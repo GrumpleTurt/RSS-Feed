@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grumple Turt RSS</title>
-    <link rel="icon" href="https://github.com/GrumpleTurt/RSS-Feed/raw/main/Grumple%20Turt%20Photography.png" type="image/png">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,27 +12,29 @@
             background-color: #f4f4f4;
         }
         .header-container {
-            max-width: 75%;
-            margin: 0 auto 20px;
-            padding: 20px;
+            max-width: 25%; /* Set the container to 25% of total width */
+            margin: 20px auto;
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
             text-align: center;
+            aspect-ratio: 1 / 1; /* Ensures a square container */
         }
-        .title-image {
-            width: 25%; /* 25% of the container width */
-            height: auto; /* Keep aspect ratio */
-            cursor: pointer; /* Indicate it's clickable */
+        .header-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the image covers the square container */
+            cursor: pointer;
         }
         .feed {
             margin: 20px auto;
-            max-width: 100%; /* Full width */
+            max-width: 100%;
         }
         .feed-item {
-            max-width: 75%;
             display: flex;
-            align-items: center;
+            align-items: center; /* Vertically aligns content */
+            max-width: 75%;
             padding: 20px;
             margin: 20px auto;
             background-color: #fff;
@@ -41,54 +42,64 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
         .feed-item img {
-            width: 20%; /* Limit image width to 20% */
-            height: auto;
-            margin-right: 20px;
+            width: 20%; /* 20% of the container's width */
+            height: 150px; /* Fixed height for uniform images */
+            margin-right: 20px; /* Space between the image and text */
             border-radius: 5px;
+            object-fit: contain; /* Ensure the entire image is visible within the container */
         }
-        .feed-item-content {
-            flex: 1;
+        .feed-content {
+            width: 80%; /* Remaining space for text content */
         }
-        .feed-item h3 {
+        .feed-content h3 {
             margin: 0;
             color: #000;
         }
-        .feed-item h3 a {
+        .feed-content h3 a {
             text-decoration: none;
             color: #000;
         }
-        .feed-item h3 a:hover {
+        .feed-content h3 a:hover {
             text-decoration: underline;
         }
-        .feed-item p {
+        .feed-content p {
             color: #555555;
+            margin-top: 10px;
         }
-        .feed-item .feed-source {
+        .feed-source {
             font-size: 0.9em;
             color: #888;
             margin-bottom: 5px;
         }
-        .feed-item .post-date {
-            font-size: 0.9em;
-            color: #888;
+        .feed-date {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: -5px;
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
+
     <div class="header-container">
-        <img src="https://github.com/GrumpleTurt/RSS-Feed/raw/main/Grumple%20Turt%20Photography.png" alt="Grumple Turt Logo" class="title-image" onclick="location.reload()">
+        <a href="javascript:location.reload();">
+            <img src="https://github.com/GrumpleTurt/RSS-Feed/raw/main/Grumple%20Turt%20Photography.png" alt="Grumple Turt Logo">
+        </a>
     </div>
+
     <div id="feed" class="feed"></div>
 
     <script>
         async function fetchRSS() {
+            const defaultImage = 'https://github.com/GrumpleTurt/RSS-Feed/raw/main/Grumple%20Turt%20Photography.png'; // Default image URL
+
             const feeds = [
                 'https://filmphotographyproject.com/feed/',
                 'http://www.fujirumors.com/feed/',
-                'https://shootitwithfilm.com/feed/'
+                'https://leica-camera.blog/feed/' // Your new feed
             ];
 
-            let allItems = [];
+            let allItems = []; // Array to hold all items from the different feeds
 
             for (const feed of feeds) {
                 try {
@@ -96,37 +107,39 @@
                     const data = await response.json();
 
                     if (data.items && data.items.length > 0) {
-                        allItems = [...allItems, ...data.items.map(item => ({
-                            ...item,
-                            source: data.feed.title
-                        }))];
-                    } else {
-                        console.warn(`No items found in the feed: ${feed}`);
+                        // Combine all items from all feeds into the allItems array
+                        data.items.forEach(item => {
+                            allItems.push({
+                                source: data.feed.title, // Add feed source
+                                title: item.title,
+                                link: item.link,
+                                description: item.description.replace(/<p>The post.*<\/p>/, ''), // Clean description
+                                pubDate: new Date(item.pubDate), // Convert publication date
+                                image: item.thumbnail || (item.content && item.content.match(/<img[^>]+src="([^">]+)"/)?.[1]) || defaultImage // Use default image if no image is found
+                            });
+                        });
                     }
                 } catch (error) {
                     console.error('Error fetching RSS feed:', error);
                 }
             }
 
-            // Sort by publication date
-            allItems.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+            // Sort the combined array of items by publication date (most recent first)
+            allItems.sort((a, b) => b.pubDate - a.pubDate);
 
+            // Display the sorted feed
             const feedContainer = document.getElementById('feed');
-
             allItems.forEach(item => {
                 const article = document.createElement('div');
                 article.className = 'feed-item';
 
-                // Check for an image, use the header image as fallback if not found
-                const firstImageUrl = item.thumbnail || item.enclosure?.link || 'https://github.com/GrumpleTurt/RSS-Feed/raw/main/Grumple%20Turt%20Photography.png';
-
                 article.innerHTML = `
-                    <img src="${firstImageUrl}" alt="Article Image">
-                    <div class="feed-item-content">
+                    <img src="${item.image}" alt="Article Image">
+                    <div class="feed-content">
                         <div class="feed-source">${item.source}</div>
+                        <div class="feed-date">${item.pubDate.toDateString()}</div>
                         <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
-                        <p>${item.description.replace(/<p>The post.*<\/p>/, '')}</p>
-                        <div class="post-date">Published on: ${new Date(item.pubDate).toLocaleDateString()}</div>
+                        <p>${item.description}</p>
                     </div>
                 `;
                 feedContainer.appendChild(article);
@@ -135,5 +148,6 @@
 
         fetchRSS();
     </script>
+
 </body>
 </html>
