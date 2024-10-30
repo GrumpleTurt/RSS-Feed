@@ -1,63 +1,94 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0"
-    xmlns:content="http://purl.org/rss/1.0/modules/content/"
-    xmlns:wfw="http://wellformedweb.org/CommentAPI/"
-    xmlns:dc="http://purl.org/dc/elements/1.1/"
-    xmlns:atom="http://www.w3.org/2005/Atom"
-    xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
-    xmlns:slash="http://purl.org/rss/1.0/modules/slash/">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrumpleTurtRSS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            color: #333333; /* Dark grey */
+        }
+        .feed {
+            margin: 20px auto;
+            max-width: 100%; /* Full width */
+        }
+        .feed-item {
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .feed-item img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+        .feed-item h3 {
+            margin: 0;
+            color: #000; /* Black text for titles and links */
+        }
+        .feed-item h3 a {
+            text-decoration: none;
+            color: #000; /* Black links */
+        }
+        .feed-item h3 a:hover {
+            text-decoration: underline;
+        }
+        .feed-item p {
+            color: #555555; /* Dark grey for all other text */
+        }
+    </style>
+</head>
+<body>
+    <h1><img src="https://drive.google.com/uc?id=1YlBN4Jc8EjN4uE2Ou0XP9j93Hut5X7-v" alt="Feed Logo" style="max-width: 100%; height: auto; border-radius: 8px;"></h1> <!-- Replaced title with image -->
+    <div id="feed" class="feed"></div>
 
-<channel>
-    <title>The Film Photography Project</title>
-    <atom:link href="https://filmphotographyproject.com/feed/" rel="self" type="application/rss+xml" />
-    <link>https://filmphotographyproject.com/</link>
-    <description>A Resource for Film Shooters Worldwide</description>
-    <lastBuildDate>Tue, 15 Oct 2024 16:03:44 +0000</lastBuildDate>
-    <language>en-US</language>
-    <sy:updatePeriod>hourly</sy:updatePeriod>
-    <sy:updateFrequency>1</sy:updateFrequency>
-    <generator>https://wordpress.org/?v=6.6.2</generator>
+    <script>
+        async function fetchRSS() {
+            const feeds = [
+                'https://filmphotographyproject.com/feed/',
+                'http://www.fujirumors.com/feed/' // Your new feed
+                // Add more feeds here
+            ];
 
-    <image>
-        <url>https://drive.google.com/uc?id=1YlBN4Jc8EjN4uE2Ou0XP9j93Hut5X7-v</url>
-        <title>The Film Photography Project</title>
-        <link>https://filmphotographyproject.com/</link>
-        <width>600</width> <!-- Update this to your image's width -->
-        <height>600</height> <!-- Update this to your image's height -->
-    </image>
+            for (const feed of feeds) {
+                try {
+                    const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${feed}`);
+                    const data = await response.json();
 
-    <item>
-        <title>FILM PHOTOGRAPHY IS ALIVE &#038; WELL &#8211; Kodak &#8211; Ilford &#8211; Harman &#8211; Used Photo Pro Interviews (FPP Ep. 331)</title>
-        <link>https://filmphotographyproject.com/film-photography-is-alive-well-kodak-ilford-harman-used-photo-pro-interviews-fpp-ep-331/</link>
-        <dc:creator><![CDATA[Michael Raso]]></dc:creator>
-        <pubDate>Tue, 15 Oct 2024 16:03:43 +0000</pubDate>
-        <category><![CDATA[Podcast]]></category>
-        <guid isPermaLink="false">https://filmphotographyproject.com/?p=36934</guid>
-        <description><![CDATA[<p>Mat Marrash hosts this exciting episode, airing on the 15th anniversary of the FPP and recorded at the annual Photography Pro Show, covering topics such as “why now is the most exciting time to shoot film.”</p>]]></description>
-        <content:encoded><![CDATA[
-<p>Film Photography Podcast &#8211; Episode 331 &#8211; October 15, 2024 /<br><br>Mat Marrash hosts this exciting episode, airing on the 15th anniversary of the FPP and recorded at the annual Photography Pro Show, covering topics such as “why now is the most exciting time to shoot film,” as well as interviews with Tim Ryugo from Kodak, Matt Parry and Hilary Freed from Harman Photo / Ilford Film and Meredith Reinker, Cory Reinker and Josh Steele from Roberts / Used Photo Pro. Closing out the show Mat catches up with FPP&#8217;s Paige Davis and founder, Michael Raso. </p>
-<p><strong><a href="https://mcdn.podbean.com/mf/download/7nxczc3wntw2mvpv/FilmPhotographyPodcast_331_2024_10_15_audio_.mp3">DOWNLOAD AUDIO</a></strong> (Right Click, Save As)</p>
-<p>Video Episode on <strong><a href="https://youtu.be/fIXzPiQ9KPM?si=LsmIyeW_RBl8RZqT">YouTube</a></strong></p>
-<p>The 2024 PRO* Convention and Trade Show* in Indianapolis, Indiana was a vibrant testimony to the endurance and growth of film photography and an incredible opportunity to meet face-to-face with the vendors whose passion for film is essential for a thriving film community.</p>
-<p> *The Photographic Research Organization (PRO) is a cooperative buying group with hundreds of members across the US, Canada and the UK. The PRO convention brings together members and retailers to facilitate a dialogue on the state of the photo industry, cultivate community, and provide education and opportunity for growth.</p>
-]]></content:encoded>
-        <enclosure url="https://mcdn.podbean.com/mf/download/7nxczc3wntw2mvpv/FilmPhotographyPodcast_331_2024_10_15_audio_.mp3" length="0" type="audio/mpeg" />
-    </item>
-    
-    <item>
-        <title>Film Photography Podcast 330</title>
-        <link>https://filmphotographyproject.com/film-photography-podcast-330/</link>
-        <dc:creator><![CDATA[Michael Raso]]></dc:creator>
-        <pubDate>Sun, 15 Sep 2024 15:45:00 +0000</pubDate>
-        <category><![CDATA[Podcast]]></category>
-        <guid isPermaLink="false">https://filmphotographyproject.com/?p=36930</guid>
-        <description><![CDATA[<p>The Film Photography Podcast announces the new FPP Jekyll/Hyde 35mm bw film and Dracula in 120 and 4x5!</p>
-<p>The post <a href="https://filmphotographyproject.com/film-photography-podcast-330/">Film Photography Podcast 330</a> appeared first on <a href="https://filmphotographyproject.com">The Film Photography Project</a>.</p>
-]]></description>
-        <content:encoded><![CDATA[
-<p>Film Photography Podcast &#8211; Episode 330 &#8211; September 15, 2024 &#8211;<br>The Film Photography Podcast announces the new FPP Jekyll/Hyde 35mm bw film and Dracula in 120 and 4&#215;5! Hear what Michael Raso and Mat Marrash have to say about these awesome new “monster” films. Then, Mat and Mike are joined by Paige Davis to read “Listener’s Letters”, where we read your thoughts on photography, film, the podcast and more! <br><br><strong><a href="https://mcdn.podbean.com/mf/download/79ujrgur8i8ibqvk/FilmPhotographyProject_330_2024_09_15_audio_.mp3">DOWNLOAD</a></strong> (Save as / Right Click)<br></p>
-<p>The post <a href="https://filmphotographyproject.com/film-photography-podcast-330/">Film Photography Podcast 330</a> appeared first on <a href="https://filmphotographyproject.com">The Film Photography Project</a>.</p>
-]]></content:encoded>
-    </item>
-</channel>
-</rss>
+                    const feedContainer = document.getElementById('feed');
+                    const logoUrl = data.feed.image.url;  // Get the image URL from the channel
+
+                    data.items.forEach(item => {
+                        const article = document.createElement('div');
+                        article.className = 'feed-item';
+
+                        // Build HTML
+                        const descriptionWithoutPost = item.description.replace(/<p>The post.*<\/p>/, ''); // Remove "This post" link
+
+                        article.innerHTML = `
+                            <img src="${logoUrl}" alt="Channel Logo">  <!-- Use logo for each item -->
+                            <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
+                            <p>${descriptionWithoutPost}</p>
+                        `;
+                        feedContainer.appendChild(article);
+                    });
+                } catch (error) {
+                    console.error('Error fetching RSS feed:', error);
+                }
+            }
+        }
+
+        fetchRSS();
+    </script>
+</body>
+</html>
