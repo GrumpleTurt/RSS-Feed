@@ -49,7 +49,8 @@
     </style>
 </head>
 <body>
-    <h1><img src="https://drive.google.com/uc?id=1YlBN4Jc8EjN4uE2Ou0XP9j93Hut5X7-v" alt="Feed Logo" style="max-width: 100%; height: auto; border-radius: 8px;"></h1>
+    <img src="https://raw.githubusercontent.com/GrumpleTurt/RSS-Feed/main/Grumple%20Turt%20Photography.jpg" alt="Grumple Turt Photography" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
+    <h1 style="text-align: center;">GrumpleTurtRSS</h1>
     <div id="feed" class="feed"></div>
 
     <script>
@@ -66,19 +67,17 @@
                     const data = await response.json();
 
                     const feedContainer = document.getElementById('feed');
+                    const logoUrl = data.feed.image.url;  // Get the image URL from the channel
 
                     data.items.forEach(item => {
                         const article = document.createElement('div');
                         article.className = 'feed-item';
 
-                        // Attempt to get the thumbnail or enclosure URL
-                        const imageUrl = item.thumbnail || item.enclosure?.url || 'https://via.placeholder.com/150'; // Placeholder for missing images
-
                         // Build HTML
                         const descriptionWithoutPost = item.description.replace(/<p>The post.*<\/p>/, ''); // Remove "This post" link
 
                         article.innerHTML = `
-                            <img src="${imageUrl}" alt="Channel Logo">  <!-- Use image for each item -->
+                            <img src="${logoUrl}" alt="Channel Logo">  <!-- Use logo for each item -->
                             <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
                             <p>${descriptionWithoutPost}</p>
                         `;
