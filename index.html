@@ -55,8 +55,8 @@
     <script>
         async function fetchRSS() {
             const feeds = [
-                'http://www.fujirumors.com/feed/',  // Replace with actual RSS URLs
-                'https://filmphotographyproject.com/feed'
+                'https://www.fujirumors.com/feed/',  // Your example feed
+                // Add more feeds here
             ];
 
             for (const feed of feeds) {
@@ -69,18 +69,22 @@
                         const article = document.createElement('div');
                         article.className = 'feed-item';
 
-                        // Check for various image sources in the feed
-                        const image = item.thumbnail || 
-                                      item.enclosure?.link || 
-                                      item['media:content']?.url || 
-                                      item.image || '';  // Checks common RSS image fields
+                        // Extract image from description or from media content
+                        let image = '';
+                        const imgRegex = /<img.*?src=["'](.*?)["']/;  // Regex to find image in description
+                        const match = imgRegex.exec(item.description);
+                        if (match && match[1]) {
+                            image = match[1];
+                        }
 
+                        // Build HTML
                         const imageHTML = image ? `<img src="${image}" alt="Article Image">` : '';
+                        const descriptionWithoutPost = item.description.replace(/<p>The post.*<\/p>/, ''); // Remove "This post" link
 
                         article.innerHTML = `
                             ${imageHTML}
                             <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
-                            <p>${item.description}</p>
+                            <p>${descriptionWithoutPost}</p>
                         `;
                         feedContainer.appendChild(article);
                     });
