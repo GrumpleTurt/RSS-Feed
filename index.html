@@ -52,6 +52,11 @@
         .feed-item p {
             color: #555555; /* Dark grey for all other text */
         }
+        .feed-source {
+            font-size: 0.9em;
+            color: #888; /* Lighter grey for feed source */
+            margin-bottom: 5px;
+        }
     </style>
 </head>
 <body>
@@ -78,6 +83,11 @@
 
                     // Check if there are items in the feed
                     if (data.items && data.items.length > 0) {
+                        // Add the feed title at the beginning of each feed section
+                        const feedTitle = document.createElement('h2');
+                        feedTitle.textContent = data.feed.title; // Assuming the feed title is available in data.feed.title
+                        feedContainer.appendChild(feedTitle);
+
                         data.items.forEach(item => {
                             const article = document.createElement('div');
                             article.className = 'feed-item';
@@ -89,6 +99,7 @@
                             const firstImageUrl = item.thumbnail || (item.content && item.content.match(/<img[^>]+src="([^">]+)"/)?.[1]) || ''; // Extract image from content
 
                             article.innerHTML = `
+                                <div class="feed-source">${data.feed.title}</div>
                                 <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
                                 ${firstImageUrl ? `<img src="${firstImageUrl}" alt="Article Image">` : ''} <!-- Display image if available -->
                                 <p>${descriptionWithoutPost}</p>
