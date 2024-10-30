@@ -69,12 +69,18 @@
                         const article = document.createElement('div');
                         article.className = 'feed-item';
 
-                        // Extract image from description or from media content
+                        // Image handling: check for <media:content>, <enclosure>, or <img> tags in the description
                         let image = '';
-                        const imgRegex = /<img.*?src=["'](.*?)["']/;  // Regex to find image in description
-                        const match = imgRegex.exec(item.description);
-                        if (match && match[1]) {
-                            image = match[1];
+                        if (item.enclosure && item.enclosure.link) {
+                            image = item.enclosure.link;  // Enclosure image
+                        } else if (item.media && item.media.content) {
+                            image = item.media.content.url;  // Media content image
+                        } else {
+                            const imgRegex = /<img.*?src=["'](.*?)["']/;  // Regex to find image in description
+                            const match = imgRegex.exec(item.description);
+                            if (match && match[1]) {
+                                image = match[1];  // Image from description
+                            }
                         }
 
                         // Build HTML
