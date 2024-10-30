@@ -55,8 +55,7 @@
     <script>
         async function fetchRSS() {
             const feeds = [
-                'https://www.fujirumors.com/feed/',
-                'https://filmphotographyproject.com/feed/'// Your example feed
+                'https://filmphotographyproject.com/feed/',  // Your new feed
                 // Add more feeds here
             ];
 
@@ -66,30 +65,17 @@
                     const data = await response.json();
 
                     const feedContainer = document.getElementById('feed');
+                    const logoUrl = data.feed.image.url;  // Get the image URL from the channel
+
                     data.items.forEach(item => {
                         const article = document.createElement('div');
                         article.className = 'feed-item';
 
-                        // Image handling: check for <media:content>, <enclosure>, or <img> tags in the description
-                        let image = '';
-                        if (item.enclosure && item.enclosure.link) {
-                            image = item.enclosure.link;  // Enclosure image
-                        } else if (item.media && item.media.content) {
-                            image = item.media.content.url;  // Media content image
-                        } else {
-                            const imgRegex = /<img.*?src=["'](.*?)["']/;  // Regex to find image in description
-                            const match = imgRegex.exec(item.description);
-                            if (match && match[1]) {
-                                image = match[1];  // Image from description
-                            }
-                        }
-
                         // Build HTML
-                        const imageHTML = image ? `<img src="${image}" alt="Article Image">` : '';
                         const descriptionWithoutPost = item.description.replace(/<p>The post.*<\/p>/, ''); // Remove "This post" link
 
                         article.innerHTML = `
-                            ${imageHTML}
+                            <img src="${logoUrl}" alt="Channel Logo">  <!-- Use logo for each item -->
                             <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
                             <p>${descriptionWithoutPost}</p>
                         `;
