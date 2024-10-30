@@ -13,11 +13,11 @@
         }
         h1 {
             text-align: center;
-            color: #333;
+            color: #333333; /* Dark grey */
         }
         .feed {
             margin: 20px auto;
-            max-width: 800px;
+            max-width: 100%; /* Full width */
         }
         .feed-item {
             padding: 20px;
@@ -34,9 +34,17 @@
         }
         .feed-item h3 {
             margin: 0;
+            color: #000; /* Black text for titles and links */
+        }
+        .feed-item h3 a {
+            text-decoration: none;
+            color: #000; /* Black links */
+        }
+        .feed-item h3 a:hover {
+            text-decoration: underline;
         }
         .feed-item p {
-            color: #555;
+            color: #555555; /* Dark grey for all other text */
         }
     </style>
 </head>
@@ -47,7 +55,7 @@
     <script>
         async function fetchRSS() {
             const feeds = [
-                'http://www.fujirumors.com/feed/',  // Replace with actual RSS URLs
+                'https://example.com/rss',  // Replace with actual RSS URLs
                 'https://another-site.com/feed'
             ];
 
