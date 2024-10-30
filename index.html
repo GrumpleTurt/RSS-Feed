@@ -106,4 +106,24 @@
                             const firstImageUrl = item.thumbnail || (item.content && item.content.match(/<img[^>]+src="([^">]+)"/)?.[1]) || '';
 
                             article.innerHTML = `
-                                <div class="feed-source">${data.feed.title
+                                <div class="feed-source">${data.feed.title}</div>
+                                <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
+                                ${firstImageUrl ? `<img src="${firstImageUrl}" alt="Article Image">` : ''}
+                                <p>${descriptionWithoutPost}</p>
+                            `;
+                            feedContainer.appendChild(article);
+                        });
+                    } else {
+                        console.warn(`No items found in the feed: ${feed}`);
+                    }
+                } catch (error) {
+                    console.error('Error fetching RSS feed:', error);
+                }
+            }
+        }
+
+        fetchRSS();
+    </script>
+
+</body>
+</html>
