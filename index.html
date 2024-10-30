@@ -82,11 +82,11 @@
                         const descriptionWithoutPost = item.description.replace(/<p>The post.*<\/p>/, ''); // Remove "This post" link
 
                         // Get the first image from the item content
-                        const firstImageUrl = item.thumbnail || (item.content && item.content.match(/<img[^>]+src="([^">]+)"/)?.[1]);
+                        const firstImageUrl = item.thumbnail || (item.content && item.content.match(/<img[^>]+src="([^">]+)"/)?.[1]) || ''; // Extract image from content
 
                         article.innerHTML = `
                             <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
-                            ${firstImageUrl ? `<img src="${firstImageUrl}" alt="Article Image">` : ''}
+                            ${firstImageUrl ? `<img src="${firstImageUrl}" alt="Article Image">` : ''} <!-- Display image if available -->
                             <p>${descriptionWithoutPost}</p>
                         `;
                         feedContainer.appendChild(article);
