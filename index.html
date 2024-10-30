@@ -61,8 +61,12 @@
                         const article = document.createElement('div');
                         article.className = 'feed-item';
 
-                        // Check if the article has an image
-                        const image = item.thumbnail || item.enclosure?.link || '';  // Using RSS image tags like thumbnail or enclosure
+                        // Check for various image sources in the feed
+                        const image = item.thumbnail || 
+                                      item.enclosure?.link || 
+                                      item['media:content']?.url || 
+                                      item.image || '';  // Checks common RSS image fields
+
                         const imageHTML = image ? `<img src="${image}" alt="Article Image">` : '';
 
                         article.innerHTML = `
