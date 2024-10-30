@@ -74,8 +74,6 @@
                         // Attempt to get the thumbnail or enclosure URL
                         const imageUrl = item.thumbnail || item.enclosure?.url || 'https://via.placeholder.com/150'; // Placeholder for missing images
 
-                        console.log('Image URL:', imageUrl); // Log the image URL for debugging
-
                         // Build HTML
                         const descriptionWithoutPost = item.description.replace(/<p>The post.*<\/p>/, ''); // Remove "This post" link
 
