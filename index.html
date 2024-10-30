@@ -15,6 +15,11 @@
             text-align: center;
             color: #333333; /* Dark grey */
         }
+        .title-image {
+            display: block;
+            margin: 0 auto 20px; /* Center the title image */
+            max-width: 20%; /* Limit the title image width */
+        }
         .feed {
             margin: 20px auto;
             max-width: 100%; /* Full width */
@@ -47,11 +52,6 @@
         .feed-item p {
             color: #555555; /* Dark grey for all other text */
         }
-        .title-image {
-            display: block;
-            margin: 0 auto 20px; /* Center the title image */
-            max-width: 20%; /* Limit the title image width */
-        }
     </style>
 </head>
 <body>
@@ -81,6 +81,7 @@
                         // Build HTML
                         const descriptionWithoutPost = item.description.replace(/<p>The post.*<\/p>/, ''); // Remove "This post" link
 
+                        // Get the first image from the item content
                         const firstImageUrl = item.thumbnail || (item.content && item.content.match(/<img[^>]+src="([^">]+)"/)?.[1]);
 
                         article.innerHTML = `
