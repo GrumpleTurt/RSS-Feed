@@ -91,10 +91,12 @@
 
     <script>
         async function fetchRSS() {
+            const defaultImage = 'https://github.com/GrumpleTurt/RSS-Feed/raw/main/Grumple%20Turt%20Photography.png'; // Default image URL
+
             const feeds = [
                 'https://filmphotographyproject.com/feed/',
                 'http://www.fujirumors.com/feed/',
-                'https://leica-camera.blog/feed/'// Your new feed
+                'https://leica-camera.blog/feed/' // Your new feed
             ];
 
             let allItems = []; // Array to hold all items from the different feeds
@@ -113,7 +115,7 @@
                                 link: item.link,
                                 description: item.description.replace(/<p>The post.*<\/p>/, ''), // Clean description
                                 pubDate: new Date(item.pubDate), // Convert publication date
-                                image: item.thumbnail || (item.content && item.content.match(/<img[^>]+src="([^">]+)"/)?.[1]) || ''
+                                image: item.thumbnail || (item.content && item.content.match(/<img[^>]+src="([^">]+)"/)?.[1]) || defaultImage // Use default image if no image is found
                             });
                         });
                     }
@@ -132,7 +134,7 @@
                 article.className = 'feed-item';
 
                 article.innerHTML = `
-                    <img src="${item.image || 'https://via.placeholder.com/150'}" alt="Article Image">
+                    <img src="${item.image}" alt="Article Image">
                     <div class="feed-content">
                         <div class="feed-source">${item.source}</div>
                         <div class="feed-date">${item.pubDate.toDateString()}</div>
