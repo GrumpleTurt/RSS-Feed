@@ -12,18 +12,19 @@
             background-color: #f4f4f4;
         }
         .header-container {
-            width: 50%;
-            padding: 20px;
+            max-width: 25%; /* Set the container to 25% of total width */
             margin: 20px auto;
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
             text-align: center;
+            aspect-ratio: 1 / 1; /* Ensures a square container */
         }
         .header-container img {
-            width: 25%; /* Set the image to 25% of the total page width */
-            height: auto;
-            border-radius: 8px;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the image covers the square container */
             cursor: pointer;
         }
         .feed {
