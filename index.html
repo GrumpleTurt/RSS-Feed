@@ -32,6 +32,8 @@
             max-width: 100%;
         }
         .feed-item {
+            display: flex;
+            align-items: center; /* Vertically aligns content */
             max-width: 75%;
             padding: 20px;
             margin: 20px auto;
@@ -40,24 +42,29 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
         .feed-item img {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 15px;
+            width: 20%; /* 20% of the container's width */
+            height: 150px; /* Fixed height for uniform images */
+            margin-right: 20px; /* Space between the image and text */
             border-radius: 5px;
+            object-fit: cover; /* Ensures image fits without distortion */
         }
-        .feed-item h3 {
+        .feed-content {
+            width: 80%; /* Remaining space for text content */
+        }
+        .feed-content h3 {
             margin: 0;
             color: #000;
         }
-        .feed-item h3 a {
+        .feed-content h3 a {
             text-decoration: none;
             color: #000;
         }
-        .feed-item h3 a:hover {
+        .feed-content h3 a:hover {
             text-decoration: underline;
         }
-        .feed-item p {
+        .feed-content p {
             color: #555555;
+            margin-top: 10px;
         }
         .feed-source {
             font-size: 0.9em;
@@ -125,11 +132,13 @@
                 article.className = 'feed-item';
 
                 article.innerHTML = `
-                    <div class="feed-source">${item.source}</div>
-                    <div class="feed-date">${item.pubDate.toDateString()}</div>
-                    <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
-                    ${item.image ? `<img src="${item.image}" alt="Article Image">` : ''}
-                    <p>${item.description}</p>
+                    <img src="${item.image || 'https://via.placeholder.com/150'}" alt="Article Image">
+                    <div class="feed-content">
+                        <div class="feed-source">${item.source}</div>
+                        <div class="feed-date">${item.pubDate.toDateString()}</div>
+                        <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
+                        <p>${item.description}</p>
+                    </div>
                 `;
                 feedContainer.appendChild(article);
             });
