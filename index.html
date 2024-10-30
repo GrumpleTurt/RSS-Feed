@@ -18,18 +18,14 @@
         .feed {
             margin: 20px auto;
             max-width: 100%; /* Full width */
-            display: flex;    /* Use flexbox for centering */
-            flex-direction: column; /* Arrange items vertically */
-            align-items: center; /* Center the items */
         }
         .feed-item {
+            max-width: 75%; /* Limit post width to 3/4 of total width */
             padding: 20px;
-            margin-bottom: 20px;
+            margin: 20px auto; /* Center the feed items */
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            width: 75%; /* Limit width to 3/4 of the total page width */
-            text-align: left; /* Keep text left-justified */
         }
         .feed-item img {
             max-width: 100%;
@@ -51,9 +47,15 @@
         .feed-item p {
             color: #555555; /* Dark grey for all other text */
         }
+        .title-image {
+            display: block;
+            margin: 0 auto 20px; /* Center the title image */
+            max-width: 20%; /* Limit the title image width */
+        }
     </style>
 </head>
 <body>
+    <img src="https://github.com/GrumpleTurt/RSS-Feed/raw/main/Grumple%20Turt%20Photography.jpg" alt="Grumple Turt Logo" class="title-image">
     <h1>GrumpleTurtRSS</h1>
     <div id="feed" class="feed"></div>
 
@@ -71,7 +73,6 @@
                     const data = await response.json();
 
                     const feedContainer = document.getElementById('feed');
-                    const logoUrl = data.feed.image.url;  // Get the image URL from the channel
 
                     data.items.forEach(item => {
                         const article = document.createElement('div');
@@ -80,16 +81,11 @@
                         // Build HTML
                         const descriptionWithoutPost = item.description.replace(/<p>The post.*<\/p>/, ''); // Remove "This post" link
 
-                        // Check for an image in the feed item or extract the first image from the content
-                        let postImage = logoUrl; // Default to channel logo
-                        const contentMatch = item.content.match(/<img.*?src="(.*?)"/);
-                        if (contentMatch && contentMatch[1]) {
-                            postImage = contentMatch[1]; // Use the first image found in the content
-                        }
+                        const firstImageUrl = item.thumbnail || (item.content && item.content.match(/<img[^>]+src="([^">]+)"/)?.[1]);
 
                         article.innerHTML = `
-                            <img src="${postImage}" alt="Post Image">  <!-- Use extracted or default image -->
                             <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
+                            ${firstImageUrl ? `<img src="${firstImageUrl}" alt="Article Image">` : ''}
                             <p>${descriptionWithoutPost}</p>
                         `;
                         feedContainer.appendChild(article);
