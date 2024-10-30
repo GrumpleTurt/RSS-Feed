@@ -21,7 +21,7 @@
             text-align: center;
         }
         .header-container img {
-            max-width: 100%;
+            width: 25%; /* Set the image to 25% of the total page width */
             height: auto;
             border-radius: 8px;
             cursor: pointer;
@@ -87,8 +87,6 @@
                 try {
                     const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${feed}`);
                     const data = await response.json();
-
-                    console.log(data);
 
                     const feedContainer = document.getElementById('feed');
 
