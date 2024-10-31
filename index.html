@@ -42,11 +42,11 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
         .feed-item img {
-    width: 20%; /* 20% of the container's width */
-    height: 150px; /* Fixed height for uniform images */
-    margin-right: 20px; /* Space between the image and text */
-    border-radius: 5px;
-    object-fit: contain; /* Ensures the entire image fits without cropping */
+            width: 20%; /* 20% of the container's width */
+            height: 150px; /* Fixed height for uniform images */
+            margin-right: 20px; /* Space between the image and text */
+            border-radius: 5px;
+            object-fit: contain; /* Ensures the entire image fits without cropping */
         }
         .feed-content {
             width: 80%; /* Remaining space for text content */
@@ -114,13 +114,16 @@
                             // Truncate description if it's too long
                             let description = item.description.length > 150 ? item.description.substring(0, 150) + '...' : item.description;
 
+                            // Refined image selection logic
+                            let image = item.thumbnail || item.enclosure?.link || (item.content && item.content.match(/<img[^>]+src="([^">]+)"/)?.[1]) || defaultImage;
+
                             allItems.push({
                                 source: data.feed.title,
                                 title: item.title,
                                 link: item.link,
                                 description: description.replace(/<p>The post.*<\/p>/, ''), // Clean description
                                 pubDate: new Date(item.pubDate), // Convert publication date
-                                image: item.thumbnail || (item.content && item.content.match(/<img[^>]+src="([^">]+)"/)?.[1]) || defaultImage // Use default image if no image is found
+                                image: image
                             });
                         });
                     }
