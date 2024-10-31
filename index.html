@@ -114,8 +114,8 @@
                             // Truncate description if it's too long
                             let description = item.description.length > 150 ? item.description.substring(0, 150) + '...' : item.description;
 
-                            // Prioritize the thumbnail image, then check enclosure, then <img> tag
-                            let image = item.thumbnail || item.enclosure?.link || defaultImage;
+                            // Refined image selection logic
+                            let image = item.thumbnail || item.enclosure?.link || (item.content && item.content.match(/<img[^>]+src="([^">]+)"/)?.[1]) || defaultImage;
 
                             allItems.push({
                                 source: data.feed.title,
