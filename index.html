@@ -46,10 +46,12 @@
             height: 150px; /* Fixed height for uniform images */
             margin-right: 20px; /* Space between the image and text */
             border-radius: 5px;
-            object-fit: contain; /* Ensure the entire image is visible within the container */
+            object-fit: cover; /* Changed from contain to cover for consistent cropping */
         }
         .feed-content {
             width: 80%; /* Remaining space for text content */
+            overflow: hidden;
+            max-height: 200px; /* Prevents text from expanding container excessively */
         }
         .feed-content h3 {
             margin: 0;
@@ -97,7 +99,7 @@
                 'https://filmphotographyproject.com/feed/',
                 'http://www.fujirumors.com/feed/',
                 'https://leica-camera.blog/feed/',
-                'https://daily-philosophy.com/index.xml'// Your new feed
+                'https://daily-philosophy.com/index.xml' // Your new feed
             ];
 
             let allItems = []; // Array to hold all items from the different feeds
@@ -108,13 +110,15 @@
                     const data = await response.json();
 
                     if (data.items && data.items.length > 0) {
-                        // Combine all items from all feeds into the allItems array
                         data.items.forEach(item => {
+                            // Truncate description if it's too long
+                            let description = item.description.length > 150 ? item.description.substring(0, 150) + '...' : item.description;
+
                             allItems.push({
-                                source: data.feed.title, // Add feed source
+                                source: data.feed.title,
                                 title: item.title,
                                 link: item.link,
-                                description: item.description.replace(/<p>The post.*<\/p>/, ''), // Clean description
+                                description: description.replace(/<p>The post.*<\/p>/, ''), // Clean description
                                 pubDate: new Date(item.pubDate), // Convert publication date
                                 image: item.thumbnail || (item.content && item.content.match(/<img[^>]+src="([^">]+)"/)?.[1]) || defaultImage // Use default image if no image is found
                             });
