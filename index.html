@@ -42,12 +42,12 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
         .feed-item img {
-    width: 20%; /* 20% of the container's width */
-    height: 150px; /* Fixed height for uniform images */
-    margin-right: 20px; /* Space between the image and text */
-    border-radius: 5px;
-    object-fit: contain; /* Ensures the entire image fits without cropping */
-}
+            width: 20%; /* 20% of the container's width */
+            height: 150px; /* Fixed height for uniform images */
+            margin-right: 20px; /* Space between the image and text */
+            border-radius: 5px;
+            object-fit: contain; /* Ensures the entire image fits without cropping */
+        }
         .feed-content {
             width: 80%; /* Remaining space for text content */
             overflow: hidden;
@@ -110,9 +110,25 @@
                     const data = await response.json();
 
                     if (data.items && data.items.length > 0) {
-                        data.items.forEach(item => {
+                        for (let item of data.items) {
                             // Truncate description if it's too long
                             let description = item.description.length > 150 ? item.description.substring(0, 150) + '...' : item.description;
+
+                            let image = item.thumbnail || defaultImage; // Default to thumbnail or default image
+
+                            // Check if it's the Daily Philosophy feed and fetch `og:image`
+                            if (feed === 'https://daily-philosophy.com/index.xml') {
+                                try {
+                                    const postResponse = await fetch(item.link);
+                                    const postText = await postResponse.text();
+                                    const ogImageMatch = postText.match(/<meta property="og:image" content="([^"]+)"/);
+                                    if (ogImageMatch && ogImageMatch[1]) {
+                                        image = ogImageMatch[1]; // Override with `og:image`
+                                    }
+                                } catch (error) {
+                                    console.error('Error fetching post image:', error);
+                                }
+                            }
 
                             allItems.push({
                                 source: data.feed.title,
@@ -120,9 +136,9 @@
                                 link: item.link,
                                 description: description.replace(/<p>The post.*<\/p>/, ''), // Clean description
                                 pubDate: new Date(item.pubDate), // Convert publication date
-                                image: item.thumbnail || (item.content && item.content.match(/<img[^>]+src="([^">]+)"/)?.[1]) || defaultImage // Use default image if no image is found
+                                image: image
                             });
-                        });
+                        }
                     }
                 } catch (error) {
                     console.error('Error fetching RSS feed:', error);
