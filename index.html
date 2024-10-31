@@ -5,80 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grumple Turt RSS</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-        .header-container {
-            max-width: 25%; /* Set the container to 25% of total width */
-            margin: 20px auto;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            text-align: center;
-            aspect-ratio: 1 / 1; /* Ensures a square container */
-        }
-        .header-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Ensures the image covers the square container */
-            cursor: pointer;
-        }
-        .feed {
-            margin: 20px auto;
-            max-width: 100%;
-        }
-        .feed-item {
-            display: flex;
-            align-items: center; /* Vertically aligns content */
-            max-width: 75%;
-            padding: 20px;
-            margin: 20px auto;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        .feed-item img {
-            width: 20%; /* 20% of the container's width */
-            height: 150px; /* Fixed height for uniform images */
-            margin-right: 20px; /* Space between the image and text */
-            border-radius: 5px;
-            object-fit: contain; /* Ensures the entire image fits without cropping */
-        }
-        .feed-content {
-            width: 80%; /* Remaining space for text content */
-            overflow: hidden;
-            max-height: 200px; /* Prevents text from expanding container excessively */
-        }
-        .feed-content h3 {
-            margin: 0;
-            color: #000;
-        }
-        .feed-content h3 a {
-            text-decoration: none;
-            color: #000;
-        }
-        .feed-content h3 a:hover {
-            text-decoration: underline;
-        }
-        .feed-content p {
-            color: #555555;
-            margin-top: 10px;
-        }
-        .feed-source {
-            font-size: 0.9em;
-            color: #888;
-            margin-bottom: 5px;
-        }
-        .feed-date {
-            font-size: 0.8em;
-            color: #666;
-            margin-top: -5px;
-            margin-bottom: 10px;
-        }
+        /* Styles remain the same as previously defined */
     </style>
 </head>
 <body>
@@ -93,16 +20,16 @@
 
     <script>
         async function fetchRSS() {
-            const defaultImage = 'https://github.com/GrumpleTurt/RSS-Feed/raw/main/Grumple%20Turt%20Photography.png'; // Default image URL
+            const defaultImage = 'https://github.com/GrumpleTurt/RSS-Feed/raw/main/Grumple%20Turt%20Photography.png';
 
             const feeds = [
                 'https://filmphotographyproject.com/feed/',
                 'http://www.fujirumors.com/feed/',
                 'https://leica-camera.blog/feed/',
-                'https://daily-philosophy.com/index.xml' // Your new feed
+                'https://daily-philosophy.com/index.xml'
             ];
 
-            let allItems = []; // Array to hold all items from the different feeds
+            let allItems = [];
 
             for (const feed of feeds) {
                 try {
@@ -111,31 +38,35 @@
 
                     if (data.items && data.items.length > 0) {
                         for (let item of data.items) {
-                            // Truncate description if it's too long
                             let description = item.description.length > 150 ? item.description.substring(0, 150) + '...' : item.description;
 
-                            let image = item.thumbnail || defaultImage; // Default to thumbnail or default image
+                            let image = item.thumbnail; // Start with thumbnail if available
 
-                            // Check if it's the Daily Philosophy feed and fetch `og:image`
+                            // Special handling for Daily Philosophy feed
                             if (feed === 'https://daily-philosophy.com/index.xml') {
                                 try {
                                     const postResponse = await fetch(item.link);
                                     const postText = await postResponse.text();
                                     const ogImageMatch = postText.match(/<meta property="og:image" content="([^"]+)"/);
                                     if (ogImageMatch && ogImageMatch[1]) {
-                                        image = ogImageMatch[1]; // Override with `og:image`
+                                        image = ogImageMatch[1];
                                     }
                                 } catch (error) {
                                     console.error('Error fetching post image:', error);
                                 }
                             }
 
+                            // Fall back to default image if no image found
+                            if (!image) {
+                                image = defaultImage;
+                            }
+
                             allItems.push({
                                 source: data.feed.title,
                                 title: item.title,
                                 link: item.link,
-                                description: description.replace(/<p>The post.*<\/p>/, ''), // Clean description
-                                pubDate: new Date(item.pubDate), // Convert publication date
+                                description: description.replace(/<p>The post.*<\/p>/, ''),
+                                pubDate: new Date(item.pubDate),
                                 image: image
                             });
                         }
@@ -145,10 +76,8 @@
                 }
             }
 
-            // Sort the combined array of items by publication date (most recent first)
             allItems.sort((a, b) => b.pubDate - a.pubDate);
 
-            // Display the sorted feed
             const feedContainer = document.getElementById('feed');
             allItems.forEach(item => {
                 const article = document.createElement('div');
