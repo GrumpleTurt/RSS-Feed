@@ -42,12 +42,13 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
         .feed-item img {
-            width: 20%; /* 20% of the container's width */
-            height: 150px; /* Fixed height for uniform images */
-            margin-right: 20px; /* Space between the image and text */
-            border-radius: 5px;
-            object-fit: cover; /* Changed from contain to cover for consistent cropping */
-        }
+    width: 20%; /* 20% of the container's width */
+    height: 150px; /* Fixed height for uniform images */
+    margin-right: 20px; /* Space between the image and text */
+    border-radius: 5px;
+    object-fit: contain; /* Ensures the entire image fits without cropping */
+}
+
         .feed-content {
             width: 80%; /* Remaining space for text content */
             overflow: hidden;
