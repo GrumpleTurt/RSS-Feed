@@ -114,8 +114,12 @@
                             // Truncate description if it's too long
                             let description = item.description.length > 150 ? item.description.substring(0, 150) + '...' : item.description;
 
-                            // Refined image selection logic
-                            let image = item.thumbnail || item.enclosure?.link || (item.content && item.content.match(/<img[^>]+src="([^">]+)"/)?.[1]) || defaultImage;
+                            // Enhanced image extraction with priority fallback
+                            let image = item.thumbnail // Check for thumbnail
+                                || item.enclosure?.link // Check enclosure link
+                                || (item.content && item.content.match(/<img[^>]+src="([^">]+)"/)?.[1]) // Image from content:encoded
+                                || (item.description && item.description.match(/<img[^>]+src="([^">]+)"/)?.[1]) // Image from description
+                                || defaultImage; // Default image if none found
 
                             allItems.push({
                                 source: data.feed.title,
