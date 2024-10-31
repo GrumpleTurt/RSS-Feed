@@ -46,7 +46,7 @@
             height: 150px; /* Fixed height for uniform images */
             margin-right: 20px; /* Space between the image and text */
             border-radius: 5px;
-            object-fit: contain; /* Ensures the entire image fits without cropping */
+            object-fit: cover; /* Changed from contain to cover for consistent cropping */
         }
         .feed-content {
             width: 80%; /* Remaining space for text content */
@@ -114,20 +114,13 @@
                             // Truncate description if it's too long
                             let description = item.description.length > 150 ? item.description.substring(0, 150) + '...' : item.description;
 
-                            // Enhanced image extraction with priority fallback
-                            let image = item.thumbnail // Check for thumbnail
-                                || item.enclosure?.link // Check enclosure link
-                                || (item.content && item.content.match(/<img[^>]+src="([^">]+)"/)?.[1]) // Image from content:encoded
-                                || (item.description && item.description.match(/<img[^>]+src="([^">]+)"/)?.[1]) // Image from description
-                                || defaultImage; // Default image if none found
-
                             allItems.push({
                                 source: data.feed.title,
                                 title: item.title,
                                 link: item.link,
                                 description: description.replace(/<p>The post.*<\/p>/, ''), // Clean description
                                 pubDate: new Date(item.pubDate), // Convert publication date
-                                image: image
+                                image: item.thumbnail || (item.content && item.content.match(/<img[^>]+src="([^">]+)"/)?.[1]) || defaultImage // Use default image if no image is found
                             });
                         });
                     }
