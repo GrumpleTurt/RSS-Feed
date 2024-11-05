@@ -12,20 +12,35 @@
             background-color: #f4f4f4;
         }
         .header-container {
-            max-width: 25%; /* Set the container to 25% of total width */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px; /* Space between buttons */
             margin: 20px auto;
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             text-align: center;
-            aspect-ratio: 1 / 1; /* Ensures a square container */
+            width: max-content;
         }
         .header-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Ensures the image covers the square container */
+            width: 100px; /* Adjust size of logo */
+            height: 100px;
+            object-fit: cover;
             cursor: pointer;
+        }
+        .header-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .header-container button:hover {
+            background-color: #0056b3;
         }
         .feed {
             margin: 20px auto;
@@ -33,7 +48,7 @@
         }
         .feed-item {
             display: flex;
-            align-items: center; /* Vertically aligns content */
+            align-items: center;
             max-width: 75%;
             padding: 20px;
             margin: 20px auto;
@@ -42,17 +57,16 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
         .feed-item img {
-    width: 20%; /* 20% of the container's width */
-    height: 150px; /* Fixed height for uniform images */
-    margin-right: 20px; /* Space between the image and text */
-    border-radius: 5px;
-    object-fit: contain; /* Ensures the entire image fits without cropping */
-}
-
+            width: 20%;
+            height: 150px;
+            margin-right: 20px;
+            border-radius: 5px;
+            object-fit: contain;
+        }
         .feed-content {
-            width: 80%; /* Remaining space for text content */
+            width: 80%;
             overflow: hidden;
-            max-height: 200px; /* Prevents text from expanding container excessively */
+            max-height: 200px;
         }
         .feed-content h3 {
             margin: 0;
@@ -88,28 +102,31 @@
         <a href="javascript:location.reload();">
             <img src="https://github.com/GrumpleTurt/RSS-Feed/blob/main/Grumple-Turt-Book.png?raw=true" alt="Grumple Turt Logo">
         </a>
+        <button id="button1">Feed List 1</button>
+        <button id="button2">Feed List 2</button>
     </div>
 
     <div id="feed" class="feed"></div>
 
 <script>
-    async function fetchRSS() {
-        const defaultImage = 'https://github.com/GrumpleTurt/RSS-Feed/blob/main/Grumple-Turt-Book.png?raw=true'; // Default image URL
+    const defaultImage = 'https://github.com/GrumpleTurt/RSS-Feed/blob/main/Grumple-Turt-Book.png?raw=true';
 
-        const feeds = [
-            'https://filmphotographyproject.com/feed/',
-            'http://www.fujirumors.com/feed/',
-            'https://leica-camera.blog/feed/',
-            'https://daily-philosophy.com/index.xml',
-            'https://kosmofoto.com/category/news/feed/',
-            'https://www.youtube.com/feeds/videos.xml?channel_id=UCx4MHIcTdwdcmJ5accSDlPA',
-            'https://www.youtube.com/feeds/videos.xml?channel_id=UCLcKQhTO6i0oq10S234vWyA',
-            'https://www.youtube.com/feeds/videos.xml?channel_id=UC7T8roVtC_3afWKTOGtLlBA',
-            'https://modernstoicism.com/feed/',
-            'https://kill-the-newsletter.com/feeds/4p8oscbtrr8qq3zukx5v.xml'
-        ];
+    const feedList1 = [
+        'https://filmphotographyproject.com/feed/',
+        'http://www.fujirumors.com/feed/',
+        'https://leica-camera.blog/feed/',
+        'https://daily-philosophy.com/index.xml'
+    ];
 
-        let allItems = []; // Array to hold all items from the different feeds
+    const feedList2 = [
+        'https://kosmofoto.com/category/news/feed/',
+        'https://www.youtube.com/feeds/videos.xml?channel_id=UCx4MHIcTdwdcmJ5accSDlPA',
+        'https://www.youtube.com/feeds/videos.xml?channel_id=UCLcKQhTO6i0oq10S234vWyA',
+        'https://modernstoicism.com/feed/'
+    ];
+
+    async function fetchRSS(feeds) {
+        let allItems = [];
 
         for (const feed of feeds) {
             try {
@@ -118,22 +135,20 @@
 
                 if (data.items && data.items.length > 0) {
                     data.items.forEach(item => {
-                        // Truncate description if it's too long
                         let description = item.description.length > 150 ? item.description.substring(0, 150) + '...' : item.description;
 
-                        // Enhanced image extraction logic
                         let imageUrl = item.thumbnail || 
                                        (item.content && item.content.match(/<img[^>]+src="([^">]+)"/)?.[1]) ||
                                        (item['media:content'] && item['media:content'].url) ||
                                        (item['content:encoded'] && item['content:encoded'].match(/<img[^>]+src="([^">]+)"/)?.[1]) ||
-                                       defaultImage; // Default image if none found
+                                       defaultImage;
 
                         allItems.push({
                             source: data.feed.title,
                             title: item.title,
                             link: item.link,
-                            description: description.replace(/<p>The post.*<\/p>/, ''), // Clean description
-                            pubDate: new Date(item.pubDate), // Convert publication date
+                            description: description.replace(/<p>The post.*<\/p>/, ''),
+                            pubDate: new Date(item.pubDate),
                             image: imageUrl
                         });
                     });
@@ -143,12 +158,10 @@
             }
         }
 
-        // Sort the combined array of items by publication date (most recent first)
         allItems.sort((a, b) => b.pubDate - a.pubDate);
 
-        // Display the sorted feed
         const feedContainer = document.getElementById('feed');
-        feedContainer.innerHTML = ''; // Clear the feed container before populating
+        feedContainer.innerHTML = '';
 
         allItems.forEach(item => {
             const article = document.createElement('div');
@@ -167,9 +180,12 @@
         });
     }
 
-    fetchRSS();
-</script>
+    document.getElementById('button1').addEventListener('click', () => fetchRSS(feedList1));
+    document.getElementById('button2').addEventListener('click', () => fetchRSS(feedList2));
 
+    // Load feedList1 by default when page loads
+    fetchRSS(feedList1);
+</script>
 
 </body>
 </html>
