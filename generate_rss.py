@@ -19,7 +19,7 @@ def create_rss_feed(passages):
     rss = ET.Element("rss", version="2.0")
     channel = ET.SubElement(rss, "channel")
     ET.SubElement(channel, "title").text = "The Enchiridion Daily Feed"
-    ET.SubElement(channel, "link").text = "https://github.com/YOUR_USERNAME/YOUR_REPO"
+    ET.SubElement(channel, "link").text = "https://github.com/GrumpleTurt/RSS-Feed"
     ET.SubElement(channel, "description").text = "Daily passages from The Enchiridion."
 
     # Calculate which passage to show today based on the date
