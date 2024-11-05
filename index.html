@@ -15,32 +15,36 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 10px; /* Space between buttons */
+            gap: 20px; /* Space between button containers */
             margin: 20px auto;
             background-color: #fff;
             border-radius: 8px;
+            padding: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            text-align: center;
             width: max-content;
         }
-        .header-container img {
-            width: 100px; /* Adjust size of logo */
-            height: 100px;
-            object-fit: cover;
-            cursor: pointer;
+        .button-container {
+            width: 120px; /* Fixed width for button containers */
+            height: 120px; /* Fixed height to ensure buttons are square */
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .header-container button {
-            padding: 10px 20px;
-            font-size: 16px;
+            width: 100px;
+            height: 100px;
+            background-image: url('https://github.com/GrumpleTurt/RSS-Feed/blob/main/Grumple-Turt-Book.png?raw=true');
+            background-size: cover;
+            background-position: center;
             border: none;
-            background-color: #007bff;
-            color: white;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
         }
         .header-container button:hover {
-            background-color: #0056b3;
+            opacity: 0.8;
         }
         .feed {
             margin: 20px auto;
@@ -99,11 +103,12 @@
 <body>
 
     <div class="header-container">
-        <a href="javascript:location.reload();">
-            <img src="https://github.com/GrumpleTurt/RSS-Feed/blob/main/Grumple-Turt-Book.png?raw=true" alt="Grumple Turt Logo">
-        </a>
-        <button id="button1">Feed List 1</button>
-        <button id="button2">Feed List 2</button>
+        <div class="button-container">
+            <button id="button1"></button>
+        </div>
+        <div class="button-container">
+            <button id="button2"></button>
+        </div>
     </div>
 
     <div id="feed" class="feed"></div>
