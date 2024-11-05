@@ -26,7 +26,6 @@
         .button-container {
             width: 120px; /* Fixed width for button containers */
             height: 120px; /* Fixed height to ensure buttons are square */
-            background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             display: flex;
@@ -38,22 +37,24 @@
             width: 100px;
             height: 100px;
             background-image: url('https://github.com/GrumpleTurt/RSS-Feed/blob/main/Grumple-Turt-Book.png?raw=true');
-            background-size: cover;
+            background-size: contain; /* Ensures the whole image fits, with transparency */
+            background-repeat: no-repeat;
             background-position: center;
             border: none;
-            border-radius: 8px;
             cursor: pointer;
+            background-color: transparent; /* Ensure button has no background */
         }
         /* Second button with the new image */
         #button2 {
             width: 100px;
             height: 100px;
-            background-image: url('https://github.com/GrumpleTurt/RSS-Feed/blob/main/Grumple%20Turt%20Photography%201%20.png?raw=true');
-            background-size: cover;
+            background-image: url('https://github.com/GrumpleTurt/RSS-Feed/blob/main/Grumple%20Turt%20Photography.png?raw=true');
+            background-size: contain; /* Ensures the whole image fits, with transparency */
+            background-repeat: no-repeat;
             background-position: center;
             border: none;
-            border-radius: 8px;
             cursor: pointer;
+            background-color: transparent; /* Ensure button has no background */
         }
         .header-container button:hover {
             opacity: 0.8;
