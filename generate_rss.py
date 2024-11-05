@@ -5,7 +5,7 @@ import xml.etree.ElementTree as ET
 
 # Path to the input file with passages
 input_file = "Enchiridion.txt"
-output_file = "daily_feed.xml"
+output_file = "daily_feed.xml"  # The generated RSS feed file
 
 # Function to parse passages from the text file
 def get_passages():
