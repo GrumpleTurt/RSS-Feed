@@ -1,0 +1,46 @@
+// Array of passages
+const passages = [
+  `1. Some things are in our control and others not. Things in our control are opinion, pursuit, desire, aversion, and, in a word, whatever are our own actions. Things not in our control are body, property, reputation, command, and, in one word, whatever are not our own actions.
+
+The things in our control are by nature free, unrestrained, unhindered; but those not in our control are weak, slavish, restrained, belonging to others. Remember, then, that if you suppose that things which are slavish by nature are also free, and that what belongs to others is your own, then you will be hindered. You will lament, you will be disturbed, and you will find fault both with gods and men. But if you suppose that only to be your own which is your own, and what belongs to others such as it really is, then no one will ever compel you or restrain you. Further, you will find fault with no one or accuse no one. You will do nothing against your will. No one will hurt you, you will have no enemies, and you will not be harmed.
+
+Aiming therefore at such great things, remember that you must not allow yourself to be carried, even with a slight tendency, towards the attainment of lesser things. Instead, you must entirely quit some things and for the present postpone the rest. But if you would both have these great things, along with power and riches, then you will not gain even the latter, because you aim at the former too: but you will absolutely fail at the former, by which alone happiness and freedom are achieved.
+
+Work, therefore to be able to say to every harsh appearance, "You are but an appearance, and not absolutely the thing you appear to be." And then examine it by those rules which you have, and first, and chiefly, by this: whether it concerns the things which are in our own control, or those which are not; and, if it concerns anything not in our control, be prepared to say that it is nothing to you.`,
+
+  `2. Remember that following desire promises the attainment of that of which you are desirous; and aversion promises the avoiding that to which you are averse. However, he who fails to obtain the object of his desire is disappointed, and he who incurs the object of his aversion wretched. If, then, you confine your aversion to those objects only which are contrary to the natural use of your faculties, which you have in your own control, you will never incur anything to which you are averse. But if you are averse to sickness, or death, or poverty, you will be wretched. Remove aversion, then, from all things that are not in our control, and transfer it to things contrary to the nature of what is in our control. But, for the present, totally suppress desire: for, if you desire any of the things which are not in your own control, you must necessarily be disappointed; and of those which are, and which it would be laudable to desire, nothing is yet in your possession. Use only the appropriate actions of pursuit and avoidance; and even these lightly, and with gentleness and reservation.`,
+
+  `3. With regard to whatever objects give you delight, are useful, or are deeply loved, remember to tell yourself of what general nature they are, beginning from the most insignificant things. If, for example, you are fond of a specific ceramic cup, remind yourself that it is only ceramic cups in general of which you are fond. Then, if it breaks, you will not be disturbed. If you kiss your child, or your wife, say that you only kiss things which are human, and thus you will not be disturbed if either of them dies.`
+];
+
+const totalPassages = passages.length;
+const oneDay = 24 * 60 * 60 * 1000; // one day in milliseconds
+const startDate = new Date('2024-11-06'); // Set your start date here
+const today = new Date();
+const diffDays = Math.floor((today - startDate) / oneDay);
+const currentPassageIndex = diffDays % totalPassages;
+const currentPassage = passages[currentPassageIndex];
+
+// Create an RSS item for the passage
+const rssItem = `
+<item>
+  <title>Passage ${currentPassageIndex + 1}</title>
+  <description>${currentPassage}</description>
+  <pubDate>${new Date().toUTCString()}</pubDate>
+</item>
+`;
+
+// Add this RSS item to your feed
+const rssFeed = `
+<rss version="2.0">
+  <channel>
+    <title>Daily Epictetus Passages</title>
+    <link>https://your-github-link-to-feed</link>
+    <description>A daily passage from Epictetus</description>
+    ${rssItem}
+  </channel>
+</rss>
+`;
+
+// Log the RSS feed for now or write it to a file in GitHub
+console.log(rssFeed);
