@@ -182,10 +182,11 @@
             const article = document.createElement('div');
             article.className = 'feed-item';
 
+            // Use a pre tag for preserving whitespace and newlines
             article.innerHTML = `
                 <div class="feed-content">
                     <h3>Enchiridion</h3>
-                    <div style="white-space: pre-wrap;">${textContent}</div>
+                    <pre style="white-space: pre-wrap; word-wrap: break-word;">${textContent}</pre>
                 </div>
             `;
             feedContainer.appendChild(article);
