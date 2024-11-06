@@ -82,8 +82,12 @@
             opacity: 0.7;
         }
         .feed {
-            margin: 20px auto;
-            max-width: 100%;
+            display: flex;
+            justify-content: center; /* Centers items horizontally */
+            align-items: center; /* Centers items vertically if you want */
+            flex-wrap: wrap; /* Allows wrapping if there's not enough space */
+            width: 100%;
+            min-height: 100vh; /* Full height of the viewport */
         }
         .feed-item {
             display: flex;
@@ -95,6 +99,7 @@
             margin-bottom: 20px;
             max-width: 900px; /* Adjust as necessary */
             width: 100%;
+            box-sizing: border-box;
         }
 
         .feed-item img {
