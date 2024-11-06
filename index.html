@@ -175,18 +175,21 @@
                 throw new Error('Network response was not ok');
             }
             const textContent = await response.text();
+            
+            // Check the fetched text content (for debugging)
+            console.log(textContent);
 
             const feedContainer = document.getElementById('feed');
-            feedContainer.innerHTML = ''; // Clear previous content
+            feedContainer.innerHTML = ''; // Clear any existing content
 
             const article = document.createElement('div');
             article.className = 'feed-item';
 
-            // Use a pre tag for preserving whitespace and newlines
+            // Ensure the pre tag is styled properly to display large text without clipping
             article.innerHTML = `
                 <div class="feed-content">
                     <h3>Enchiridion</h3>
-                    <pre style="white-space: pre-wrap; word-wrap: break-word; overflow-wrap: break-word; max-height: none; padding: 10px;">${textContent}</pre>
+                    <pre style="white-space: pre-wrap; word-wrap: break-word; padding: 10px; max-height: none; overflow: visible; margin: 0;">${textContent}</pre>
                 </div>
             `;
             feedContainer.appendChild(article);
