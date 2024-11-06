@@ -16,28 +16,28 @@
             background-color: #f4f4f4;
         }
         .header-container {
-    display: flex;
-    justify-content: space-around; /* Distribute buttons evenly */
-    align-items: center;
-    margin: 20px auto;
-    background-color: #fff;
-    border-radius: 8px;
-    padding: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    max-width: 100%; /* Ensure container doesn't exceed screen width */
-    width: 300px; /* Set a width that fits all buttons on smaller screens */
-    box-sizing: border-box; /* Ensure padding is included in width */
-}
+            display: flex;
+            justify-content: space-around; /* Distribute buttons evenly */
+            align-items: center;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            max-width: 100%; /* Ensure container doesn't exceed screen width */
+            width: 300px; /* Set a width that fits all buttons on smaller screens */
+            box-sizing: border-box; /* Ensure padding is included in width */
+        }
         .button-container {
-    flex: 1; /* Ensure buttons take up equal space */
-    max-width: 100px; /* Limit button width */
-    height: 100px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+            flex: 1; /* Ensure buttons take up equal space */
+            max-width: 100px; /* Limit button width */
+            height: 100px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
         /* First button with the original image */
         #button1 {
             width: 80px;
@@ -89,23 +89,23 @@
             display: flex;
             align-items: column;
             max-width: 100%;
-            padding: 15px;
-            margin: 10px auto;
+            padding: 20px;
+            margin: 20px auto;
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            flex-wrap: wrap;
         }
         .feed-item img {
-            width: 100%;
-            height: 150px;
+            width: 20%;
+            height: auto;
             margin-right: 20px;
             border-radius: 5px;
             object-fit: contain;
         }
         .feed-content {
-            width: 100%;
+            flex: 1;
             overflow: hidden;
-            max-height: 200px;
         }
         .feed-content.enchiridion-content {
             max-height: none; /* Remove the height limit */
@@ -151,6 +151,20 @@
             margin-top: -5px;
             margin-bottom: 10px;
         }
+        @media screen and (max-width: 768px) {
+    .feed-item {
+        flex-direction: column; /* Stack image and text vertically on smaller screens */
+        align-items: flex-start;
+    }
+    .feed-item img {
+        width: 100%; /* Make image full width in mobile portrait view */
+        height: auto; /* Maintain aspect ratio */
+        margin: 0 0 10px 0; /* Add space below the image */
+    }
+    .feed-content {
+        width: 100%; /* Ensure content takes full width below image */
+    }
+}
     </style>
 </head>
 <body>
