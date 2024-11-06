@@ -87,15 +87,16 @@
         }
         .feed-item {
             display: flex;
-            align-items: column;
-            max-width: 100%;
-            padding: 20px;
+            flex-direction: column;
+            align-items: center;
             margin: 20px auto;
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            flex-wrap: wrap;
+            padding: 20px;
+            max-width: 800px; /* Adjust as necessary */
         }
+
         .feed-item img {
             width: 20%;
             height: auto;
@@ -151,60 +152,77 @@
             margin-top: -5px;
             margin-bottom: 10px;
         }
-        /* Container styling for mobile (stacked) and desktop (three-column) */
-@media (max-width: 768px) {
-    .feed-item {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        max-width: 100%;
-        padding: 20px;
-        margin: 20px auto;
-        background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-    .feed-item img {
-        width: 100%;
-        height: auto;
-        margin-bottom: 10px;
-    }
-    .feed-content {
-        width: 100%;
-    }
-}
-
+/* For desktop view */
 @media (min-width: 769px) {
     .feed-item {
         display: grid;
-        grid-template-columns: 1fr 2fr 3fr; /* Image, title/date/link, body text */
+        grid-template-columns: 1fr 2fr 3fr; /* Image 1/3, title 1/3, text 1/3 */
         align-items: center;
-        max-width: 1000px;
-        padding: 20px;
-        margin: 20px auto;
-        background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        height: 200px; /* Uniform height */
     }
+
     .feed-item img {
-        width: 100%; /* Adjust image size for uniform height */
-        height: 150px; /* Set a fixed height */
-        object-fit: cover; /* Crop images to maintain uniformity */
-        border-radius: 5px;
-        margin-right: 20px;
+        width: 100%; /* Full width of the first column */
+        height: 100%; /* Fit the full height */
+        object-fit: contain; /* Ensure the image fits without being cut */
     }
+
     .feed-content {
+        overflow: hidden;
+        height: 100%; /* Ensure the text fills its container */
         display: flex;
         flex-direction: column;
         justify-content: space-between;
     }
+
+    /* Align the title, date, and link in the middle column */
     .feed-content h3 {
         margin: 0;
-        color: #000;
+        font-size: 18px;
     }
+
+    .feed-date {
+        margin-top: 5px;
+        font-size: 0.9em;
+        color: #666;
+    }
+
     .feed-content p {
-        color: #555;
         margin-top: 10px;
+        color: #555;
+        font-size: 14px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 4; /* Limit text to 4 lines */
+        -webkit-box-orient: vertical;
+    }
+}
+
+/* For mobile view */
+@media (max-width: 768px) {
+    .feed-item {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .feed-item img {
+        width: 100%;
+        height: auto; /* Let the image adjust naturally */
+        object-fit: contain;
+        margin-bottom: 10px;
+    }
+
+    .feed-content {
+        text-align: left;
+        padding: 10px 0;
+    }
+
+    .feed-content p {
+        font-size: 14px;
+        color: #555;
+        max-height: none; /* Allow full text display */
+        -webkit-line-clamp: unset; /* Remove line clamp */
     }
 }
 
