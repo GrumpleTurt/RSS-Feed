@@ -239,4 +239,30 @@
                     <div class="feed-source">${item.source}</div>
                     <div class="feed-date">${item.pubDate.toDateString()}</div>
                     <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
-                    <
+                    <p>${item.description}</p>
+                </div>
+            `;
+            feedContainer.appendChild(article);
+        });
+    }
+
+    document.getElementById('button1').addEventListener('click', () => {
+        fetchRSS(feedList1);
+    });
+
+    document.getElementById('button2').addEventListener('click', () => {
+        fetchRSS(feedList2);
+    });
+
+    document.getElementById('button3').addEventListener('click', () => {
+        fetchTextFile();
+    });
+
+    window.onload = () => {
+        defaultImage = 'https://github.com/GrumpleTurt/RSS-Feed/raw/main/Grumple%20Turt%20Photography.png';
+        fetchRSS(feedList1); // Load the first feed by default
+    };
+</script>
+
+</body>
+</html>
