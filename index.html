@@ -94,7 +94,7 @@
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            max-width: 800px; /* Adjust as necessary */
+            max-width: 900px; /* Adjust as necessary */
         }
 
         .feed-item img {
@@ -157,28 +157,29 @@
     .feed-item {
         display: grid;
         grid-template-columns: 1fr 2fr 3fr; /* Image 1/3, title 1/3, text 1/3 */
-        align-items: center;
-        height: 200px; /* Uniform height */
+        align-items: start; /* Align to the top */
+        height: auto; /* Ensure height is flexible */
+        column-gap: 20px; /* Add space between columns */
     }
 
     .feed-item img {
         width: 100%; /* Full width of the first column */
-        height: 100%; /* Fit the full height */
+        height: auto; /* Keep the aspect ratio */
         object-fit: contain; /* Ensure the image fits without being cut */
+        padding-right: 20px; /* Add padding between the image and text */
     }
 
     .feed-content {
-        overflow: hidden;
-        height: 100%; /* Ensure the text fills its container */
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: flex-start;
     }
 
     /* Align the title, date, and link in the middle column */
     .feed-content h3 {
         margin: 0;
         font-size: 18px;
+        font-weight: bold;
     }
 
     .feed-date {
@@ -187,15 +188,17 @@
         color: #666;
     }
 
-    .feed-content p {
-        margin-top: 10px;
+    .feed-body {
+        grid-column: 3; /* Force the body text into the third column */
+        margin: 0;
         color: #555;
         font-size: 14px;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        line-height: 1.5;
         display: -webkit-box;
         -webkit-line-clamp: 4; /* Limit text to 4 lines */
         -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }
 
@@ -208,7 +211,7 @@
 
     .feed-item img {
         width: 100%;
-        height: auto; /* Let the image adjust naturally */
+        height: auto;
         object-fit: contain;
         margin-bottom: 10px;
     }
@@ -218,18 +221,12 @@
         padding: 10px 0;
     }
 
-    .feed-content p {
+    .feed-body {
         font-size: 14px;
         color: #555;
         max-height: none; /* Allow full text display */
         -webkit-line-clamp: unset; /* Remove line clamp */
     }
-}
-
-/* Additional styling for uniform post height */
-.feed-item {
-    max-height: 300px; /* Limit the height to keep the layout uniform */
-    overflow: hidden; /* Prevent content from exceeding the container */
 }
     </style>
 </head>
