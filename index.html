@@ -151,19 +151,67 @@
             margin-top: -5px;
             margin-bottom: 10px;
         }
-        @media screen and (max-width: 768px) {
+        /* Container styling for mobile (stacked) and desktop (three-column) */
+@media (max-width: 768px) {
     .feed-item {
-        flex-direction: column; /* Stack image and text vertically on smaller screens */
+        display: flex;
+        flex-direction: column;
         align-items: flex-start;
+        max-width: 100%;
+        padding: 20px;
+        margin: 20px auto;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
     .feed-item img {
-        width: 100%; /* Make image full width in mobile portrait view */
-        height: auto; /* Maintain aspect ratio */
-        margin: 0 0 10px 0; /* Add space below the image */
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
     }
     .feed-content {
-        width: 100%; /* Ensure content takes full width below image */
+        width: 100%;
     }
+}
+
+@media (min-width: 769px) {
+    .feed-item {
+        display: grid;
+        grid-template-columns: 1fr 2fr 3fr; /* Image, title/date/link, body text */
+        align-items: center;
+        max-width: 1000px;
+        padding: 20px;
+        margin: 20px auto;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .feed-item img {
+        width: 100%; /* Adjust image size for uniform height */
+        height: 150px; /* Set a fixed height */
+        object-fit: cover; /* Crop images to maintain uniformity */
+        border-radius: 5px;
+        margin-right: 20px;
+    }
+    .feed-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .feed-content h3 {
+        margin: 0;
+        color: #000;
+    }
+    .feed-content p {
+        color: #555;
+        margin-top: 10px;
+    }
+}
+
+/* Additional styling for uniform post height */
+.feed-item {
+    max-height: 300px; /* Limit the height to keep the layout uniform */
+    overflow: hidden; /* Prevent content from exceeding the container */
 }
     </style>
 </head>
