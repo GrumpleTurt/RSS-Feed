@@ -1,3 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grumple Turt RSS</title>
+
+    <!-- Link for iPhone home screen icon -->
+    <link rel="apple-touch-icon" href="https://github.com/GrumpleTurt/RSS-Feed/blob/main/Grumple%20iPhone%20Icon.png?raw=true">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .header-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px; /* Space between button containers */
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: max-content;
+        }
+        .button-container {
+            width: 120px; /* Fixed width for button containers */
+            height: 120px; /* Fixed height to ensure buttons are square */
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        /* First button with the original image */
+        #button1 {
+            width: 100px;
+            height: 100px;
+            background-image: url('https://github.com/GrumpleTurt/RSS-Feed/blob/main/Grumple-Turt-Book.png?raw=true');
+            background-size: contain; /* Ensures the whole image fits, with transparency */
+            background-repeat: no-repeat;
+            background-position: center;
+            border: none;
+            cursor: pointer;
+            background-color: transparent; /* Ensure button has no background */
+        }
+        /* Second button with the new image */
+        #button2 {
+            width: 100px;
+            height: 100px;
+            background-image: url('https://github.com/GrumpleTurt/RSS-Feed/blob/main/Grumple%20Turt%20Photography.png?raw=true');
+            background-size: contain; /* Ensures the whole image fits, with transparency */
+            background-repeat: no-repeat;
+            background-position: center;
+            border: none;
+            cursor: pointer;
+            background-color: transparent; /* Ensure button has no background */
+        }
+        /* Third button for text file display */
+        #button3 {
+            width: 100px;
+            height: 100px;
+            background-color: #eee;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .header-container button:hover {
+            opacity: 0.8;
+        }
+        .feed {
+            margin: 20px auto;
+            max-width: 100%;
+        }
+        .feed-item {
+            display: flex;
+            align-items: center;
+            max-width: 75%;
+            padding: 20px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .feed-item img {
+            width: 20%;
+            height: 150px;
+            margin-right: 20px;
+            border-radius: 5px;
+            object-fit: contain;
+        }
+        .feed-content {
+            width: 80%;
+            overflow: hidden;
+            max-height: 200px;
+        }
+        .feed-content h3 {
+            margin: 0;
+            color: #000;
+        }
+        .feed-content h3 a {
+            text-decoration: none;
+            color: #000;
+        }
+        .feed-content h3 a:hover {
+            text-decoration: underline;
+        }
+        .feed-content p {
+            color: #555555;
+            margin-top: 10px;
+        }
+        .feed-source {
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 5px;
+        }
+        .feed-date {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: -5px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <div class="button-container">
+            <button id="button1"></button>
+        </div>
+        <div class="button-container">
+            <button id="button2"></button>
+        </div>
+        <div class="button-container">
+            <button id="button3">Read Enchiridion</button> <!-- Third button -->
+        </div>
+    </div>
+
+    <div id="feed" class="feed"></div>
+
 <script>
     let defaultImage;
 
@@ -17,7 +168,6 @@
         'https://filmphotographyproject.com/feed/'
     ];
 
-    // Function to fetch and display text from a file
     async function fetchTextFile() {
         try {
             const response = await fetch('https://github.com/GrumpleTurt/RSS-Feed/raw/main/Enchiridion.txt');
@@ -89,28 +239,4 @@
                     <div class="feed-source">${item.source}</div>
                     <div class="feed-date">${item.pubDate.toDateString()}</div>
                     <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
-                    <p>${item.description}</p>
-                </div>
-            `;
-            feedContainer.appendChild(article);
-        });
-    }
-
-    document.getElementById('button1').addEventListener('click', () => {
-        defaultImage = 'https://github.com/GrumpleTurt/RSS-Feed/blob/main/Grumple-Turt-Book.png?raw=true';
-        fetchRSS(feedList1);
-    });
-
-    document.getElementById('button2').addEventListener('click', () => {
-        defaultImage = 'https://github.com/GrumpleTurt/RSS-Feed/blob/main/Grumple%20Turt%20Photography.png?raw=true';
-        fetchRSS(feedList2);
-    });
-
-    document.getElementById('button3').addEventListener('click', () => {
-        fetchTextFile(); // Fetch and display text document
-    });
-
-    // Load feedList1 by default when page loads
-    defaultImage = 'https://github.com/GrumpleTurt/RSS-Feed/blob/main/Grumple-Turt-Book.png?raw=true';
-    fetchRSS(feedList1);
-</script>
+                    <
