@@ -247,11 +247,9 @@
             article.innerHTML = `
                 <img src="${item.image}" alt="Article Image" onerror="this.src='${defaultImage}'">
                 <div class="feed-content">
-
-
                     <div class="feed-source">${item.source}</div>
-                    <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
                     <div class="feed-date">${item.pubDate.toDateString()}</div>
+                    <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
                     <p>${item.description}</p>
                 </div>
             `;
@@ -267,8 +265,15 @@
         fetchRSS(feedList2);
     });
 
-    // Initially load the first feed
-    fetchRSS(feedList1);
+    document.getElementById('button3').addEventListener('click', () => {
+        fetchTextFile();
+    });
+
+    window.onload = () => {
+        defaultImage = 'https://github.com/GrumpleTurt/RSS-Feed/raw/main/Grumple%20Turt%20Photography.png';
+        fetchRSS(feedList1); // Load the first feed by default
+    };
 </script>
+
 </body>
 </html>
