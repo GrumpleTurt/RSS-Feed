@@ -103,7 +103,7 @@
         .feed-content {
             width: 80%;
             overflow: hidden;
-            max-height: 200px;
+            max-height: 200px; /* This max-height is for other feed items */
         }
         .feed-content h3 {
             margin: 0;
@@ -130,6 +130,12 @@
             color: #666;
             margin-top: -5px;
             margin-bottom: 10px;
+        }
+
+        /* Class to ensure full text content is displayed without clipping */
+        .text-display {
+            max-height: none; /* Remove height limitation for Enchiridion content */
+            overflow: visible; /* Allow full text to be shown */
         }
     </style>
 </head>
@@ -185,11 +191,11 @@
             const article = document.createElement('div');
             article.className = 'feed-item';
 
-            // Ensure the pre tag is styled properly to display large text without clipping
+            // Apply the text-display class to ensure full content is shown
             article.innerHTML = `
-                <div class="feed-content">
+                <div class="feed-content text-display">
                     <h3>Enchiridion</h3>
-                    <pre style="white-space: pre-wrap; word-wrap: break-word; padding: 10px; max-height: none; overflow: visible; margin: 0;">${textContent}</pre>
+                    <pre style="white-space: pre-wrap; word-wrap: break-word; padding: 10px; margin: 0;">${textContent}</pre>
                 </div>
             `;
             feedContainer.appendChild(article);
@@ -238,18 +244,18 @@
         allItems.sort((a, b) => b.pubDate - a.pubDate);
 
         const feedContainer = document.getElementById('feed');
-        feedContainer.innerHTML = '';
+        feedContainer.innerHTML = ''; // Clear previous content
 
         allItems.forEach(item => {
             const article = document.createElement('div');
             article.className = 'feed-item';
 
             article.innerHTML = `
-                <img src="${item.image}" alt="Article Image" onerror="this.src='${defaultImage}'">
+                <img src="${item.image}" alt="Feed Image">
                 <div class="feed-content">
-                    <div class="feed-source">${item.source}</div>
-                    <div class="feed-date">${item.pubDate.toDateString()}</div>
                     <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
+                    <p class="feed-source">${item.source}</p>
+                    <p class="feed-date">${item.pubDate.toLocaleDateString()}</p>
                     <p>${item.description}</p>
                 </div>
             `;
@@ -264,15 +270,6 @@
     document.getElementById('button2').addEventListener('click', () => {
         fetchRSS(feedList2);
     });
-
-    document.getElementById('button3').addEventListener('click', () => {
-        fetchTextFile();
-    });
-
-    window.onload = () => {
-        defaultImage = 'https://github.com/GrumpleTurt/RSS-Feed/raw/main/Grumple%20Turt%20Photography.png';
-        fetchRSS(feedList1); // Load the first feed by default
-    };
 </script>
 
 </body>
