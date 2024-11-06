@@ -87,26 +87,25 @@
         }
         .feed-item {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 20px auto;
+            align-items: flex-start;
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             padding: 20px;
+            margin-bottom: 20px;
             max-width: 900px; /* Adjust as necessary */
+            width: 100%;
         }
 
         .feed-item img {
-            width: 20%;
+            width: 25%;
             height: auto;
             margin-right: 20px;
             border-radius: 5px;
             object-fit: contain;
         }
         .feed-content {
-            flex: 1;
-            overflow: hidden;
+            width: 75%;
         }
         .feed-content.enchiridion-content {
             max-height: none; /* Remove the height limit */
@@ -128,7 +127,7 @@
         .feed-content h3 {
             margin: 0;
             color: #000;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
         }
         .feed-content h3 a {
             text-decoration: none;
@@ -152,78 +151,20 @@
             margin-top: -5px;
             margin-bottom: 10px;
         }
-/* For desktop view */
-@media (min-width: 769px) {
-    .feed-item {
-        display: grid;
-        grid-template-columns: 1fr 2fr 3fr; /* Image 1/3, title 1/3, text 1/3 */
-        align-items: start; /* Align to the top */
-        column-gap: 20px; /* Add space between columns */
-    }
-
-    .feed-item img {
-        width: 100%; /* Full width of the first column */
-        height: auto; /* Keep the aspect ratio */
-        object-fit: contain; /* Ensure the image fits without being cut */
-        padding-right: 20px; /* Add padding between the image and text */
-        grid-column: 1;
-    }
-
-    .feed-content {
-        grid-column: 2;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-    }
-
-    /* Align the title, date, and link in the middle column */
-    .feed-content h3 {
-        margin: 0;
-        font-size: 18px;
-        font-weight: bold;
-    }
-
-    .feed-date {
-        margin-top: 5px;
-        font-size: 0.9em;
-        color: #666;
-    }
-
-    .feed-body {
-        grid-column: 3; /* Force the body text into the third column */
-        margin: 0;
-        color: #555;
-        font-size: 14px;
-        line-height: 1.5;
-        display: -webkit-box;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-}
 /* For mobile view */
 @media (max-width: 768px) {
     .feed-item {
         flex-direction: column;
-        height: auto;
+        align-items: center;
     }
 
     .feed-item img {
         width: 100%;
-        height: auto;
-        object-fit: contain;
         margin-bottom: 10px;
     }
 
     .feed-content {
-        text-align: left;
-        padding: 10px 0;
-    }
-
-    .feed-body {
-        font-size: 14px;
-        color: #555;
-        max-height: none; /* Allow full text display */
-        -webkit-line-clamp: unset; /* Remove line clamp */
+        width: 100%;
     }
 }
     </style>
