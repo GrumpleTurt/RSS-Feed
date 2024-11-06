@@ -38,6 +38,9 @@ def create_rss_feed(passages):
     tree = ET.ElementTree(rss)
     tree.write(output_file, encoding="utf-8", xml_declaration=True)
 
+    # Debugging: Print out the feed to the console
+    print(ET.tostring(rss, encoding="utf-8").decode('utf-8'))
+
 # Main execution
 if __name__ == "__main__":
     passages = get_passages()
