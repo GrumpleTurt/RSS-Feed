@@ -158,7 +158,6 @@
         display: grid;
         grid-template-columns: 1fr 2fr 3fr; /* Image 1/3, title 1/3, text 1/3 */
         align-items: start; /* Align to the top */
-        height: auto; /* Ensure height is flexible */
         column-gap: 20px; /* Add space between columns */
     }
 
@@ -167,9 +166,11 @@
         height: auto; /* Keep the aspect ratio */
         object-fit: contain; /* Ensure the image fits without being cut */
         padding-right: 20px; /* Add padding between the image and text */
+        grid-column: 1;
     }
 
     .feed-content {
+        grid-column: 2;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -195,13 +196,10 @@
         font-size: 14px;
         line-height: 1.5;
         display: -webkit-box;
-        -webkit-line-clamp: 4; /* Limit text to 4 lines */
-        -webkit-box-orient: vertical;
         overflow: hidden;
         text-overflow: ellipsis;
     }
 }
-
 /* For mobile view */
 @media (max-width: 768px) {
     .feed-item {
