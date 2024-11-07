@@ -29,15 +29,14 @@
             box-sizing: border-box; /* Ensure padding is included in width */
         }
         .button-container {
-            flex: 1; /* Ensure buttons take up equal space */
-            max-width: none; /* Limit button width */
-            width: 100%;
-            border-radius: 8px;
-            border: none;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             display: flex;
-            justify-content: center;
-            align-items: center;
+            justify-content: center; /* Center the buttons horizontally */
+            gap: 20px; /* Space between buttons */
+            width: auto; /* Let the container shrink to the size of the buttons */
+            height: auto; /* Let the container shrink to fit buttons */
+            padding: 0; /* Remove padding from the container */
+            margin: 0; /* Remove margin from the container */
+            box-sizing: border-box; /* Ensure box model includes padding/borders */
         }
         .button-container button {
             width: 80px;
@@ -47,6 +46,7 @@
             border: none;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             cursor: pointer;
+            background-color: transparent;
         }
         /* First button with the original image */
         #button1 {
@@ -54,8 +54,6 @@
             background-size: contain; /* Ensures the whole image fits, with transparency */
             background-repeat: no-repeat;
             background-position: center;
-            border: none;
-            background-color: transparent; /* Ensure button has no background */
         }
         /* Second button with the new image */
         #button2 {
@@ -63,14 +61,10 @@
             background-size: contain; /* Ensures the whole image fits, with transparency */
             background-repeat: no-repeat;
             background-position: center;
-            border: none;
-            background-color: transparent; /* Ensure button has no background */
         }
         /* Third button for text file display */
         #button3 {
             background-color: #eee;
-            border: none;
-            cursor: pointer;
             font-size: 14px;
             color: #333;
             display: flex;
