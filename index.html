@@ -205,35 +205,69 @@
         'https://filmphotographyproject.com/feed/'
     ];
 
-    async function fetchTextFile() {
-    try {
-        const response = await fetch('https://raw.githubusercontent.com/GrumpleTurt/RSS-Feed/main/Enchiridion.txt');
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        const textContent = await response.text();
+    async function fetchTextFiles() {
+    const files = [
+        { title: 'Enchiridion', url: 'https://raw.githubusercontent.com/GrumpleTurt/RSS-Feed/main/Enchiridion.txt' },
+        { title: 'Heraclitus', url: 'https://raw.githubusercontent.com/GrumpleTurt/RSS-Feed/main/Heraclitus.txt' }
+    ];
 
-        const feedContainer = document.getElementById('feed');
-        feedContainer.innerHTML = ''; // Clear any existing content
+    const feedContainer = document.getElementById('feed');
+    feedContainer.innerHTML = ''; // Clear any existing content
+
+    for (const file of files) {
+        const response = await fetch(file.url);
+        const textContent = await response.text();
 
         const article = document.createElement('div');
         article.className = 'feed-item';
 
         article.innerHTML = `
             <div class="feed-content enchiridion-content">
-                <h3 style="font-family: 'Georgia', serif; font-size: 24px; color: #444; text-align: center; margin-bottom: 20px;">Enchiridion</h3>
-                <pre style="white-space: pre-wrap; word-wrap: break-word; font-family: 'Georgia', serif; font-size: 18px; color: #333; line-height: 1.6; padding: 20px; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); margin: 0;">${textContent}</pre>
+                <h3 style="font-family: 'Georgia', serif; font-size: 24px; color: #444; text-align: center; margin-bottom: 20px;">
+                    <a href="#" class="text-file-link" data-url="${file.url}">${file.title}</a>
+                </h3>
+                <p>${textContent.substring(0, 150)}...</p>
             </div>
         `;
+
         feedContainer.appendChild(article);
-    } catch (error) {
-        console.error('Error fetching text file:', error);
     }
+
+    document.querySelectorAll('.text-file-link').forEach(link => {
+        link.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const url = e.target.getAttribute('data-url');
+            await displayFullText(url);
+        });
+    });
 }
 
-    document.getElementById('button3').addEventListener('click', () => {
-        fetchTextFile();
-    });
+async function displayFullText(url) {
+    const response = await fetch(url);
+    const textContent = await response.text();
+
+    const feedContainer = document.getElementById('feed');
+    feedContainer.innerHTML = ''; // Clear content to show the full text
+
+    const article = document.createElement('div');
+    article.className = 'feed-item';
+
+    article.innerHTML = `
+        <div class="feed-content enchiridion-content">
+            <pre style="white-space: pre-wrap; word-wrap: break-word; font-family: 'Georgia', serif; font-size: 18px; color: #333; line-height: 1.6; padding: 20px; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); margin: 0;">${textContent}</pre>
+        </div>
+    `;
+
+    feedContainer.appendChild(article);
+}
+
+    document.getElementById('button3').addEventListener('click', function() {
+    // Clear the feed container and call the fetchTextFiles function
+    const feedContainer = document.getElementById('feed');
+    feedContainer.innerHTML = ''; // Clear the feed container before fetching text files
+
+    fetchTextFiles(); // Fetch and display both Enchiridion and Heraclitus text files
+});
 
     async function fetchRSS(feeds) {
         let allItems = [];
