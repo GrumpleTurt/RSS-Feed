@@ -30,8 +30,8 @@
         }
         .button-container {
             flex: 1; /* Ensure buttons take up equal space */
-            max-width: 100px; /* Limit button width */
-            height: 100px;
+            max-width: none; /* Limit button width */
+            width: 100%;
             border-radius: 8px;
             border: 1px solid black;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -40,37 +40,35 @@
             gap: 20px;
             align-items: center;
         }
-        /* First button with the original image */
-        #button1 {
+        .button-container button {
             width: 80px;
             height: 80px;
-            padding: 10px 20px;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid black;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+        /* First button with the original image */
+        #button1 {
             background-image: url('https://github.com/GrumpleTurt/RSS-Feed/blob/main/Grumple-Turt-Book.png?raw=true');
             background-size: contain; /* Ensures the whole image fits, with transparency */
             background-repeat: no-repeat;
             background-position: center;
             border: none;
-            cursor: pointer;
             background-color: transparent; /* Ensure button has no background */
         }
         /* Second button with the new image */
         #button2 {
-            width: 80px;
-            height: 80px;
-            padding: 10px 20px;
             background-image: url('https://github.com/GrumpleTurt/RSS-Feed/blob/main/Grumple%20Turt%20Photography.png?raw=true');
             background-size: contain; /* Ensures the whole image fits, with transparency */
             background-repeat: no-repeat;
             background-position: center;
             border: none;
-            cursor: pointer;
             background-color: transparent; /* Ensure button has no background */
         }
         /* Third button for text file display */
         #button3 {
-            width: 80px;
-            height: 80px;
-            padding: 10px 20px;
             background-color: #eee;
             border: none;
             cursor: pointer;
@@ -80,7 +78,6 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
         .header-container button:hover {
