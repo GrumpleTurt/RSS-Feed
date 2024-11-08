@@ -2,10 +2,9 @@
 <header>
 <h1>Meditations | Marcus Aurelius</h1>
 </header>
-
-Book 1
-
-Debts and Lessons
+<section>
+<h2>Book 1 Debts and Lessons</h2>
+</section>
 
 1.1 My Grandfather Verus
 Character and self-control.
