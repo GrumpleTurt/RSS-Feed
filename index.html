@@ -34,8 +34,6 @@
             display: flex;
             justify-content: center; /* Center the buttons horizontally */
             gap: 20px; /* Space between buttons */
-            width: auto; /* Let the container shrink to the size of the buttons */
-            height: auto; /* Let the container shrink to fit buttons */
             padding: 0; /* Remove padding from the container */
             margin: 0; /* Remove margin from the container */
             box-sizing: border-box; /* Ensure box model includes padding/borders */
@@ -89,7 +87,7 @@
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             max-width: 900px; /* Adjust as necessary */
             width: 100%;
             box-sizing: border-box;
@@ -109,10 +107,9 @@
             width: 100%;
             padding: 0 20px;
             box-sizing: border-box;
-            max-height: none; /* Remove the height limit */
             overflow: visible; /* Allow text to flow naturally */
-            margin-bottom: 10px !important;
-            padding-bottom: 0 !important;
+            margin-bottom: 10px;
+            padding-bottom: 0;
         }
         .feed-content.enchiridion-content pre {
             font-family: 'Georgia', serif; /* Change the font family */
@@ -126,12 +123,6 @@
             width: 100%; /* Ensure it takes up full width of the container */
             box-sizing: border-box; /* Include padding and border in width calculation */
             margin: 0; /* Remove margin to avoid extra space */
-            margin-top: 0;  /* Remove top margin */
-            margin-bottom: 0;  /* Remove bottom margin */
-        }
-        .feed-item.enchiridion-content {
-            margin-bottom: 10px !important; /* Reduce the margin between text file posts */
-             padding-bottom: 0 !important;  /* Remove any extra padding */
         }
         .feed-content h3 {
             margin: 0;
