@@ -4,14 +4,40 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Meditations</title>
+<style>
+        /* Optional: Universal reset for margin, padding, and box-sizing */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Remove default margin from all heading tags */
+        h1, h2, h3, h4, h5, h6 {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Additional styles for h1 */
+        h1 {
+            font-size: 2em;
+            color: #333;
+            margin-top: 0; /* Ensure no margin at the top */
+        }
+
+        /* Styling for other elements (example for paragraphs) */
+        p {
+            font-size: 1em;
+            line-height: 1.6;
+            margin-top: 1rem;
+        }
+    </style>
 </head>
 <body>
 <h1>Marcus Aurelius</h1>
-
-<h3>Book 1</h3>
+<h2>Book 1</h2>
+<h3>Debts and Lessons</h3>
 <p>
-Debts and Lessons
-
 1.1 My Grandfather Verus
 Character and self-control.
 
