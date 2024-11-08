@@ -65,9 +65,10 @@
 
         article.innerHTML = `
             <div class="feed-content enchiridion-content">
-                <h3 style="font-family: 'Georgia', serif; font-size: 24px; color: #444; text-align: center; margin-bottom: 20px;">
-                    <a href="#" class="text-file-link" data-url="${file.url}">${file.title}</a>
+                <h3 class="feed-title">
+            <a href="#" class="text-file-link" data-url="${file.url}">${file.title}</a>
                 </h3>
+
                 <p>${textContent.substring(0, 150)}...</p>
             </div>
         `;
@@ -172,10 +173,6 @@ async function displayFullText(url) {
 
     document.getElementById('button2').addEventListener('click', () => {
         fetchRSS(feedList2);
-    });
-
-    document.getElementById('button3').addEventListener('click', () => {
-        fetchTextFile();
     });
 
     window.onload = () => {
