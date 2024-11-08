@@ -1,4 +1,5 @@
-Meditations
+[[TITLE]] Meditations
+[[AUTHOR]] Marcus Aurelius
 
 Book 1
 Debts and Lessons
