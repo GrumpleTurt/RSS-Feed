@@ -1,7 +1,15 @@
-[[TITLE]] Meditations
-[[AUTHOR]] Marcus Aurelius
+<!DOCTPYE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meditations</title>
+</head>
+<body>
+<h1>Marcus Aurelius</h1>
 
-Book 1
+<h3>Book 1</h3>
+<p>
 Debts and Lessons
 
 1.1 My Grandfather Verus
@@ -28,4 +36,6 @@ The recognition that I needed to train and discipline my character. Not to be si
 Not to dress up just to stroll around the house, or things like that. To write straightforward letters (like the one he sent my mother from Sinuessa). And to behave in a conciliatory way when people who have angered or annoyed us want to make up. 
 To read attentively-not to be satisfied with "just getting the gist of it." And not to fall for every smooth talker.
 And for introducing me to Epictetus's lectures-and loaning me his own copy.
-
+</p>
+</body>
+</html>
