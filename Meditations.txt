@@ -5,32 +5,39 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Meditations</title>
 <style>
-        /* Optional: Universal reset for margin, padding, and box-sizing */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+       /* Universal reset for all elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        /* Remove default margin from all heading tags */
-        h1, h2, h3, h4, h5, h6 {
-            margin: 0;
-            padding: 0;
-        }
+/* Ensure no margin or padding on the <html> and <body> elements */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Ensure the full height is used */
+}
 
-        /* Additional styles for h1 */
-        h1 {
-            font-size: 2em;
-            color: #333;
-            margin-top: 0; /* Ensure no margin at the top */
-        }
+/* Remove any margin from all heading tags */
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+}
 
-        /* Styling for other elements (example for paragraphs) */
-        p {
-            font-size: 1em;
-            line-height: 1.6;
-            margin-top: 1rem;
-        }
+/* Style for h1 */
+h1 {
+    font-size: 2em;
+    color: #333;
+    margin-top: 0;  /* Explicitly remove top margin */
+}
+
+/* Example styling for paragraphs */
+p {
+    font-size: 1em;
+    line-height: 1.6;
+    margin-top: 1rem;
+}
     </style>
 </head>
 <body>
