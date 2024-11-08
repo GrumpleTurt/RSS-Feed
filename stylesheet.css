@@ -60,12 +60,37 @@
         .header-container button:hover {
             opacity: 0.7;
         }
-header h1 {
-    text-align: center;
-    font-size: 2.5em;  /* Large title size */
-    color: #2c3e50;  /* Dark color for the title */
-    margin-bottom: 20px;
-}
+        header h1 {
+            text-align: center;
+            font-size: 2.5em;  /* Large title size */
+            color: #2c3e50;  /* Dark color for the title */
+            margin-bottom: 20px;
+        }
+
+/* Chapter and section titles */
+        h2, h3 {
+            font-family: 'Arial', sans-serif;
+            color: #2980b9;  /* Blueish color for headings */
+            font-weight: bold;
+        }
+
+        h2 {
+            font-size: 2em;  /* Size for chapter titles */
+            margin-top: 30px;  /* Space above the chapter title */
+        }
+
+        h3 {
+            font-size: 1.5em;  /* Smaller size for sub-chapter titles */
+            margin-top: 20px;
+        }
+
+/* Paragraph styling */
+        p {
+            text-align: justify;  /* Justify text for neat alignment */
+            margin: 20px 0;  /* Margin between paragraphs */
+            font-size: 1em;
+            color: #34495e;  /* Lighter text color for body text */
+        }
         .feed {
             display: flex;
             justify-content: center; /* Centers items horizontally */
