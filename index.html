@@ -145,41 +145,26 @@ async function displayFullText(url) {
             }
         }
 
+        allItems.sort((a, b) => b.pubDate - a.pubDate);
+
+        const feedContainer = document.getElementById('feed');
+        feedContainer.innerHTML = '';
+
         allItems.forEach(item => {
-    const article = document.createElement('div');
-    article.className = 'feed-item';
+            const article = document.createElement('div');
+            article.className = 'feed-item';
 
-    // Check if it's a text file (you can identify text files based on their URL or other logic)
-    if (item.link.includes('.txt')) {
-        // Fetch the text content, split by lines, and use the second line as the title
-        fetch(item.link)
-            .then(response => response.text())
-            .then(textContent => {
-                const lines = textContent.split("\n");
-                const secondLine = lines[1]; // The second line as the title
-
-                article.innerHTML = `
-                    <div class="feed-content">
-                        <h3><a href="${item.link}" target="_blank">${secondLine}</a></h3>
-                        <p>${lines.slice(2).join(" ")}</p>  <!-- Display the rest of the content -->
-                    </div>
-                `;
-                feedContainer.appendChild(article);
-            });
-    } else {
-        // Handle normal RSS feed items (unchanged)
-        article.innerHTML = `
-            <img src="${item.image}" alt="Article Image" onerror="this.src='${defaultImage}'">
-            <div class="feed-content">
-                <div class="feed-source">${item.source}</div>
-                <div class="feed-date">${item.pubDate.toDateString()}</div>
-                <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
-                <p>${item.description}</p>
-            </div>
-        `;
-        feedContainer.appendChild(article);
-    }
-});
+            article.innerHTML = `
+                <img src="${item.image}" alt="Article Image" onerror="this.src='${defaultImage}'">
+                <div class="feed-content">
+                    <div class="feed-source">${item.source}</div>
+                    <div class="feed-date">${item.pubDate.toDateString()}</div>
+                    <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
+                    <p>${item.description}</p>
+                </div>
+            `;
+            feedContainer.appendChild(article);
+        });
     }
 
     document.getElementById('button1').addEventListener('click', () => {
