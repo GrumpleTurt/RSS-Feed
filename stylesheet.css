@@ -63,14 +63,14 @@
         header h1 {
             text-align: center;
             font-size: 2.5em;  /* Large title size */
-            color: #2c3e50;  /* Dark color for the title */
+            color: #333333;  /* Dark color for the title */
             margin-bottom: 20px;
         }
 
 /* Chapter and section titles */
         h2, h3 {
             font-family: 'Arial', sans-serif;
-            color: #2980b9;  /* Blueish color for headings */
+            color: #333333;  /* Blueish color for headings */
             font-weight: bold;
         }
 
@@ -89,7 +89,7 @@
             text-align: justify;  /* Justify text for neat alignment */
             margin: 20px 0;  /* Margin between paragraphs */
             font-size: 1em;
-            color: #34495e;  /* Lighter text color for body text */
+            color: #333333;  /* Lighter text color for body text */
         }
         .feed {
             display: flex;
