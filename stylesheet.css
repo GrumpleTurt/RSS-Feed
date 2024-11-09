@@ -5,6 +5,13 @@
             padding: 20px;
             background-color: #f4f4f4;
         }
+        body, h2, h3, p {
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+        * {
+            box-sizing: border-box;
+        }
         .header-container {
             display: flex;
             justify-content: space-around; /* Distribute buttons evenly */
@@ -16,7 +23,6 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             max-width: 100%; /* Ensure container doesn't exceed screen width */
             width: 300px; /* Set a width that fits all buttons on smaller screens */
-            box-sizing: border-box; /* Ensure padding is included in width */
         }
         .button-container {
             display: flex;
@@ -24,7 +30,6 @@
             gap: 20px; /* Space between buttons */
             padding: 0; /* Remove padding from the container */
             margin: 0; /* Remove margin from the container */
-            box-sizing: border-box; /* Ensure box model includes padding/borders */
         }
         .button-container button {
             width: 80px;
@@ -69,27 +74,21 @@
 
 /* Chapter and section titles */
         h2, h3 {
-            font-family: 'Arial', sans-serif;
-            color: #333333;  /* Blueish color for headings */
             font-weight: bold;
         }
-
         h2 {
             font-size: 2em;  /* Size for chapter titles */
             margin-top: 30px;  /* Space above the chapter title */
         }
-
         h3 {
             font-size: 1.5em;  /* Smaller size for sub-chapter titles */
             margin-top: 20px;
         }
-
 /* Paragraph styling */
         p {
             text-align: justify;  /* Justify text for neat alignment */
             margin: 20px 0;  /* Margin between paragraphs */
             font-size: 1em;
-            color: #333333;  /* Lighter text color for body text */
         }
         .feed {
             display: flex;
@@ -109,9 +108,7 @@
             margin-bottom: 10px;
             max-width: 900px; /* Adjust as necessary */
             width: 100%;
-            box-sizing: border-box;
         }
-
         .feed-item img {
             width: 25%;
             height: auto;
@@ -163,7 +160,7 @@
             text-decoration: underline;
         }
         .feed-content p {
-            color: #555555;
+            color: #333333;
             margin-top: 1rem;
         }
         .feed-source {
