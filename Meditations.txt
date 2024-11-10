@@ -1,8 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meditations | Marcus Aurelius</title>
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+
 <div class="document">
-<header>
-<link rel="stylesheet" href="stylesheet.css">
-<h3>Meditations | Marcus Aurelius</h3>
-<!-- Index/Contents -->
 <nav>
   <ul>
     <li><a href="#book1">Book 1 | Debts and Lessons</a></li>
@@ -77,3 +83,5 @@ To show your teachers ungrudging respect (the Domitius and Athenodotus story), a
 </section>
 
 </div>
+</body>
+</html>
