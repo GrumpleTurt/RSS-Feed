@@ -96,9 +96,9 @@ async function displayFullText(url) {
     article.className = 'feed-item';
 
     article.innerHTML = `
-        <div class="feed-content enchiridion-content">
-            <pre style="white-space: pre-wrap; word-wrap: break-word; font-family: 'Georgia', serif; font-size: 18px; color: #333; line-height: 1.6; padding: 20px; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); margin: 0;">${textContent}</pre>
-        </div>
+        <div class="feed-content enchiridion-content document">
+        ${textContent}
+    </div>
     `;
 
     feedContainer.appendChild(article);
