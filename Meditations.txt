@@ -1,9 +1,9 @@
 <div class="document">
 <header>
-<h1>Meditations | Marcus Aurelius</h1>
+<h3>Meditations | Marcus Aurelius</h3>
 </header>
 <section>
-<h2>Book 1 Debts and Lessons</h2>
+<h3>Book 1 Debts and Lessons</h3>
 </section>
 
 1.1 My Grandfather Verus
@@ -30,4 +30,10 @@ The recognition that I needed to train and discipline my character. Not to be si
 Not to dress up just to stroll around the house, or things like that. To write straightforward letters (like the one he sent my mother from Sinuessa). And to behave in a conciliatory way when people who have angered or annoyed us want to make up. 
 To read attentively-not to be satisfied with "just getting the gist of it." And not to fall for every smooth talker.
 And for introducing me to Epictetus's lectures-and loaning me his own copy.
+
+1.8 Apollonius
+Independence and unvarying reliability, and to pay attention to nothing, no matter how fleetingly, except the logos. And to be the same in all circumstances-intense pain, the loss of a child, chronic illness. And to see clearly, from his example, that a man can show both strength and flexability.
+His patience in teaching. And to have seen someone who clearly viewed his expertise and ability as a teacher as the humblest of virtues.
+And to have learned how to accept favors from friends without losing your self-respect or appearing ungrateful.
+
 </div>
