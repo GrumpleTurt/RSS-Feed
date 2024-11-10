@@ -9,6 +9,7 @@
 <body>
 
 <div class="document">
+<h1>Meditations | Marcus Aurelius</h1>
 <nav>
   <ul>
     <li><a href="#book1">Book 1 | Debts and Lessons</a></li>
