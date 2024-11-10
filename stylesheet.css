@@ -1,4 +1,5 @@
-  <style>
+<style>
+/* Global Styles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -8,6 +9,8 @@
         * {
             box-sizing: border-box;
         }
+
+/* Header Section (With Buttons) */
         .header-container {
             display: flex;
             justify-content: space-around; /* Distribute buttons evenly */
@@ -37,21 +40,18 @@
             cursor: pointer;
             background-color: transparent;
         }
-        /* First button with the original image */
         #button1 {
             background-image: url('https://github.com/GrumpleTurt/RSS-Feed/blob/main/Grumple-Turt-Book.png?raw=true');
             background-size: contain; /* Ensures the whole image fits, with transparency */
             background-repeat: no-repeat;
             background-position: center;
         }
-        /* Second button with the new image */
         #button2 {
             background-image: url('https://github.com/GrumpleTurt/RSS-Feed/blob/main/Grumple%20Turt%20Photography.png?raw=true');
             background-size: contain; /* Ensures the whole image fits, with transparency */
             background-repeat: no-repeat;
             background-position: center;
         }
-        /* Third button for text file display */
         #button3 {
             background-image: url('https://github.com/GrumpleTurt/RSS-Feed/blob/main/Grumple%20Scroll.png?raw=true');
             background-size: contain; /* Ensures the whole image fits, with transparency */
@@ -63,29 +63,12 @@
         }
         header h1 {
             text-align: center;
-            font-size: 2.5em;  /* Large title size */
-            color: #333333;  /* Dark color for the title */
+            font-size: 2.5em;
+            color: #333333;
             margin-bottom: 20px;
         }
 
-/* Chapter and section titles */
-        h2, h3 {
-            font-weight: bold;
-        }
-        h2 {
-            font-size: 2em;  /* Size for chapter titles */
-            margin-top: 30px;  /* Space above the chapter title */
-        }
-        h3 {
-            font-size: 1.5em;  /* Smaller size for sub-chapter titles */
-            margin-top: 20px;
-        }
-/* Paragraph styling */
-        p {
-            text-align: justify;  /* Justify text for neat alignment */
-            margin: 20px 0;  /* Margin between paragraphs */
-            font-size: 1em;
-        }
+/* Feed Section*/
         .feed {
             display: flex;
             justify-content: center; /* Centers items horizontally */
@@ -170,7 +153,33 @@
             margin-top: -5px;
             margin-bottom: 10px;
         }
-        /* For mobile view */
+
+/* Document Section */
+        .document h1 {
+            font-size: 2rem;
+            color: #333333
+        }
+        .document h2 {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        .document h2 {
+            font-size: 1.5em;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .document h3 {
+            font-size: 1.5em;  /* Smaller size for sub-chapter titles */
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .document p {
+            text-align: justify;  /* Justify text for neat alignment */
+            margin: 50px 0;  /* Margin between paragraphs */
+            font-size: 1em;
+        }
+
+/* For mobile view */
         @media (max-width: 768px) {
             .feed-item {
                 flex-direction: column;
