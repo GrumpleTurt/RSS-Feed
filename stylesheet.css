@@ -158,8 +158,8 @@
         .document h1 {
             font-size: 2rem;
             color: #333333
-            margin-top: 10px;
-            margin-bottom: 10px;
+            margin-top: 0px;
+            margin-bottom: 0px;
         }
         .document h2 {
             font-size: 1.8rem;
@@ -169,17 +169,17 @@
         }
         .document h2 {
             font-size: 1.5em;
-            margin-top: 10px;
-            margin-bottom: 10px;
+            margin-top: 1px;
+            margin-bottom: 1px;
         }
         .document h3 {
             font-size: 1.5em;  /* Smaller size for sub-chapter titles */
-            margin-top: 20px;
-            margin-bottom: 10px;
+            margin-top: 1px;
+            margin-bottom: 1px;
         }
         .document p {
             text-align: justify;  /* Justify text for neat alignment */
-            margin: 50px 0;  /* Margin between paragraphs */
+            margin: 5px 0;  /* Margin between paragraphs */
             font-size: 1em;
         }
 
