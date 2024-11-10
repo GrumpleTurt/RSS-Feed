@@ -158,10 +158,14 @@
         .document h1 {
             font-size: 2rem;
             color: #333333
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
         .document h2 {
             font-size: 1.8rem;
             font-weight: bold;
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
         .document h2 {
             font-size: 1.5em;
