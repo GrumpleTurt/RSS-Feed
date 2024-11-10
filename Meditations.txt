@@ -1,5 +1,6 @@
 <div class="document">
 <header>
+<link rel="stylesheet" href="stylesheet.css">
 <h3>Meditations | Marcus Aurelius</h3>
 <!-- Index/Contents -->
 <nav>
