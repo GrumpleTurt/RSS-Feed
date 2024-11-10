@@ -1,6 +1,12 @@
 <div class="document">
 <header>
 <h3>Meditations | Marcus Aurelius</h3>
+<!-- Index/Contents -->
+<nav>
+  <ul>
+    <li><a href="#book1">Book 1 | Debts and Lessons</a></li>
+  </ul>
+</nav>
 </header>
 <section>
 <h3>Book 1 Debts and Lessons</h3>
