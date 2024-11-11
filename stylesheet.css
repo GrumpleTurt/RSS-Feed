@@ -161,32 +161,27 @@
             font-size: 2rem;
             color: #333333
             margin-top: 0px;
-            margin-bottom: 0px;
+            margin-bottom: 10px;
         }
         .document h2 {
             font-size: 1.8rem;
             font-weight: bold;
-            margin-top: 1px;
-            margin-bottom: 1px;
-        }
-        .document h2 {
-            font-size: 1.5em;
-            margin-top: 1px;
-            margin-bottom: 1px;
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
         .document h3 {
             font-size: 1.5em;  /* Smaller size for sub-chapter titles */
-            margin-top: 1px;
-            margin-bottom: 1px;
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
         .document h4 {
-            font-size: 1.2rem;
-            margin-top: 0px;
-            margin-bottom: 0px;
+            font-size: 1rem;
+            margin-top: 5px;
+            margin-bottom: 5px;
         }
         .document p {
             text-align: justify;  /* Justify text for neat alignment */
-            margin: 0px 0;  /* Margin between paragraphs */
+            margin: 5px 0;  /* Margin between paragraphs */
             font-size: .8em;
         }
 
