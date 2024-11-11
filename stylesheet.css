@@ -161,28 +161,28 @@
             font-size: 2rem;
             color: #333333
             margin-top: 0px;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
         .document h2 {
             font-size: 1.8rem;
             font-weight: bold;
-            margin-top: 10px;
+            margin-top: 20px;
             margin-bottom: 10px;
         }
         .document h3 {
             font-size: 1.5em;  /* Smaller size for sub-chapter titles */
-            margin-top: 10px;
+            margin-top: 20px;
             margin-bottom: 10px;
         }
         .document h4 {
-            font-size: 1rem;
-            margin-top: 5px;
-            margin-bottom: 5px;
+            font-size: .8rem;
+            margin-top: 20px;
+            margin-bottom: 10px;
         }
         .document p {
             text-align: justify;  /* Justify text for neat alignment */
             margin: 5px 0;  /* Margin between paragraphs */
-            font-size: .8em;
+            font-size: .8rem;
         }
 
 /* For mobile view */
