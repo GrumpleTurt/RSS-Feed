@@ -8,6 +8,12 @@
         * {
             box-sizing: border-box;
         }
+        hr {
+            border: 0; /* Remove default border */
+            height: 2px; /* Set the height of the line */
+            background: linear-gradient(to right, transparent, #333, transparent); /* Gradient effect for tapering */
+            margin: 20px 0; /* Optional: space around the line */
+        }
 
 /* Header Section (With Buttons) */
         .header-container {
