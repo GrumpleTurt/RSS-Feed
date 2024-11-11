@@ -156,7 +156,7 @@
         }
         .document h1 {
             font-size: 2rem;
-            color: #333333
+            color: #333333;
             margin-top: 0px;
             margin-bottom: 20px;
         }
@@ -164,21 +164,25 @@
             font-size: 1.8rem;
             margin-top: 20px;
             margin-bottom: 10px;
+            color: #333333;
         }
         .document h3 {
             font-size: 1.5em;  /* Smaller size for sub-chapter titles */
             margin-top: 20px;
             margin-bottom: 10px;
+            color: #333333;
         }
         .document h4 {
             font-size: .8rem;
             margin-top: 20px;
             margin-bottom: 10px;
+            color: #333333;
         }
         .document p {
             text-align: justify;  /* Justify text for neat alignment */
             margin: 5px 0;  /* Margin between paragraphs */
             font-size: .8rem;
+            color: #333333;
         }
 
 /* For mobile view */
