@@ -105,19 +105,6 @@
             margin-bottom: 10px;
             padding-bottom: 0;
         }
-        .feed-content.enchiridion-content pre {
-            font-size: 1rem; /* Change font size */
-            color: #333; /* Change text color */
-            background-color: #f9f9f9; /* Optional: change background color */
-            padding: 1px; /* Add padding for better readability */
-            border-radius: 2px; /* Optional: add rounded corners */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: add shadow */
-            width: 100%; /* Ensure it takes up full width of the container */
-            box-sizing: border-box; /* Include padding and border in width calculation */
-            margin: 0; /* Remove margin to avoid extra space */
-            margin-top: 0;
-            margin-bottom: 0;
-        }
         .feed-content h3 {
             margin: 0;
             color: #000;
