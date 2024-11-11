@@ -97,6 +97,14 @@
         .feed-content {
             width: 75%;
         }
+        .feed-content.enchiridion-content {
+            width: 100%;
+            padding: 0 20px;
+            box-sizing: border-box;
+            overflow: visible; /* Allow text to flow naturally */
+            margin-bottom: 10px;
+            padding-bottom: 0;
+        }
         .feed-content h3 {
             margin: 0;
             color: #000;
