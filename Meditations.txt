@@ -13,12 +13,14 @@
 <center>
 <h1>Meditations | Marcus Aurelius</h1>
 </center>
+<hr>
 <nav>
   <ul>
     <li><a href="#book1">Book 1 | Debts and Lessons</a></li>
     <li><a href="#book2">Book 2 | On the River Gran, Among the Quadi</a></li>
   </ul>
 </nav>
+<hr>
 </header>
 
 <!-- Content Sections -->
